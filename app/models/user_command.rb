@@ -1,0 +1,2 @@
+class UserCommand < ApplicationRecord
+end

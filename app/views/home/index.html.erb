@@ -1,77 +1,80 @@
-
-
 <style>
     @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');
 </style>
 
 <div class="min-w-screen min-h-screen flex items-center justify-center px-5 py-5">
-    <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
-        <div class="md:flex w-full">
-            <div class="hidden md:block w-1/2">
-                <% if Document.last.file.attachment.previewable? %>
-                    <%= link_to(image_tag(Document.last.file.preview(resize: "600x600")),  rails_blob_path(Document.last.file, disposition: "attachment")) %>
-                <% elsif Document.last.file.variable? %>
-                    <%= link_to(image_tag(Document.last.file.variant(resize: "600x600")),  rails_blob_path(Document.last.file, disposition: "attachment")) %>
-                <% end %>
-            </div>
-            <div class="w-full md:w-1/2 py-10 px-5 md:px-10">
-                <div class="text-center mb-10">
-                    <h1 class="font-bold text-3xl text-gray-900">COMMANDER</h1>
-                    <p>Manuel de prière de 21 Jours de jeûne et de prières</p>
-                </div>
-                <%= form_with(url: root_path) do |form| %>
-                <div>
-                    <div class="flex -mx-3">
-                        <div class="w-1/2 px-3 mb-5">
-                            <label for="" class="text-xs font-semibold px-1">First name</label>
-                            <div class="flex">
-                                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
-                                <input type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="John">
-                            </div>
-                        </div>
-                        <div class="w-1/2 px-3 mb-5">
-                            <label for="" class="text-xs font-semibold px-1">Last name</label>
-                            <div class="flex">
-                                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
-                                <input type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Smith">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex -mx-3">
-                        <div class="w-full px-3 mb-5">
-                            <label for="" class="text-xs font-semibold px-1">Email</label>
-                            <div class="flex">
-                                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                <input type="email" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="johnsmith@example.com" require>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex -mx-3">
-                        <div class="w-full px-3 mb-5">
-                            <label for="" class="text-xs font-semibold px-1">Pays résidence</label>
-                            <div class="flex">
-                                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                <input type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Cameroun" require>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex -mx-3">
-                        <div class="w-full px-3 mb-5">
-                            <label for="" class="text-xs font-semibold px-1">Nombre copie</label>
-                            <div class="flex">
-                                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                <input type="number" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="3" require>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex -mx-3">
-                        <div class="w-full px-3 mb-5">
-                            <%= form.submit "Enregistrer", class: "block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold" %>
-                        </div>
-                    </div>
-                </div>
-                <% end %>
-            </div>
+  <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
+    <div class="md:flex w-full">
+      <div class="hidden md:block w-1/2">
+        <% if Document.first.file.attachment.previewable? %>
+          <%= link_to(image_tag(Document.first.file.preview(resize: "600x600")), rails_blob_path(Document.first.file, disposition: "attachment")) %>
+        <% elsif Document.first.file.variable? %>
+          <%= link_to(image_tag(Document.first.file.variant(resize: "600x600")), rails_blob_path(Document.first.file, disposition: "attachment")) %>
+        <% end %>
+      </div>
+      <div class="w-full md:w-1/2 py-10 px-5 md:px-10">
+        <div class="text-center mb-10">
+          <h1 class="font-bold text-3xl text-gray-900">COMMANDER</h1>
+          <p>Manuel de prière de 21 Jours de jeûne et de prières</p>
         </div>
+        <%= form_with(url: command_path) do |form| %>
+          <div>
+            <div class="flex -mx-3">
+              <div class="w-1/2 px-3 mb-5">
+                <label for="" class="text-xs font-semibold px-1">First name</label>
+                <div class="flex">
+                  <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                    <i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
+                  <%= form.text_field :name, class: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500", required: true, placeholder: "FOTUE" %>
+                </div>
+              </div>
+              <div class="w-1/2 px-3 mb-5">
+                <label for="" class="text-xs font-semibold px-1">Last name</label>
+                <div class="flex">
+                  <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                    <i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
+                  <%= form.text_field :second_name, class: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500", required: true, placeholder: "Valentin" %>
+                </div>
+              </div>
+            </div>
+            <div class="flex -mx-3">
+              <div class="w-full px-3 mb-5">
+                <label for="" class="text-xs font-semibold px-1">Email</label>
+                <div class="flex">
+                  <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                    <i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
+                  <%= form.email_field :email, class: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500", required: true, placeholder: "utilsateur@email.com" %>
+                </div>
+              </div>
+            </div>
+            <div class="flex -mx-3">
+              <div class="w-full px-3 mb-5">
+                <label for="" class="text-xs font-semibold px-1">Pays résidence</label>
+                <div class="flex">
+                  <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                    <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
+                  <%= form.text_field :pays, class: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500", required: true, placeholder: "Pays de résidence" %>
+                </div>
+              </div>
+            </div>
+            <div class="flex -mx-3">
+              <div class="w-full px-3 mb-5">
+                <label for="" class="text-xs font-semibold px-1">Nombre copie</label>
+                <div class="flex">
+                  <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                    <i class="mdi mdi-bell-outline text-gray-400 text-lg"></i></div>
+                  <%= form.number_field :nombre, class: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500", required: true, placeholder: "Nombre de copie" %>
+                </div>
+              </div>
+            </div>
+            <div class="flex -mx-3">
+              <div class="w-full px-3 mb-5">
+                <%= form.submit "Enregistrer", class: "block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
+  </div>
 </div>

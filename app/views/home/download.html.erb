@@ -1,2 +1,10 @@
-<h1>Home#download</h1>
-<p>Find me in app/views/home/download.html.erb</p>
+<!--<object data="<%#= url_for(Document.last.file) %>" height="800" width="800" type="application/pdf" class="m-auto mt-12"></object>-->
+<div class="m-auto mt-12">
+  <% if Document.last.file.attachment.previewable? %>
+    <%= link_to(image_tag(Document.last.file.preview(resize: "600x600")), rails_blob_path(Document.last.file, disposition: "attachment")) %>
+    <br>
+    <%= link_to "Télécharger", rails_blob_path(Document.last.file, disposition: "attachment") %>
+  <% elsif Document.first.last.variable? %>
+    <%= link_to(image_tag(Document.last.file.variant(resize: "600x600")), rails_blob_path(Document.last.file, disposition: "attachment")) %>
+  <% end %>
+</div>
