@@ -55,4 +55,4 @@ production:
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  url: "mysql://b62c2eef6e2759:1c2dd9f0@us-cdbr-east-02.cleardb.com/heroku_a3a982130b4c02f?reconnect=true" <%#= ENV['CLEARDB_DATABASE_URL'] %>
+  url: "mysql2://b62c2eef6e2759:1c2dd9f0@us-cdbr-east-02.cleardb.com/heroku_a3a982130b4c02f?reconnect=true" <%#= ENV['CLEARDB_DATABASE_URL'] %>
