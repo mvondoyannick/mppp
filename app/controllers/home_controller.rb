@@ -5,6 +5,10 @@ class HomeController < ApplicationController
   def download
   end
 
+  def list
+    @command = UserCommand.all.order(created_at: :desc)
+  end
+
   # make a command
   def command
     if request.post?
