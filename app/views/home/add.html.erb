@@ -1,0 +1,7 @@
+added file
+<%= form_with(url: add_path) do |form| %>
+    <%= form.text_field :title, required: true %> <br>
+    <%= form.file_field :file, accept: 'application/pdf', required: true %>
+    <br>
+    <%= form.submit "Envoyer" %>
+<% end %>
