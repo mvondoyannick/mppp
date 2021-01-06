@@ -52,7 +52,8 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: mppp_production
-  username: mppp
-  password: <%= ENV['MPPP_DATABASE_PASSWORD'] %>
+  #<<: *default
+  #database: mppp_production
+  #username: mppp
+  #password: <%= ENV['MPPP_DATABASE_PASSWORD'] %>
+  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
