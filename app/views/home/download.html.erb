@@ -1,5 +1,15 @@
 <!--<object data="<%#= url_for(Document.last.file) %>" height="800" width="800" type="application/pdf" class="m-auto mt-12"></object>-->
-<div class="m-auto mt-12">
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="pb-5 border-b border-gray-200 mt-12">
+  <h3 class="text-lg leading-6 font-medium text-gray-900">
+    Espace de téléchargement
+  </h3>
+  <p class="mt-2 max-w-4xl text-sm text-gray-500">
+    Vous pouvez télécharger le manuel numérique directement en cliquand sur la couverture ou alors en cliquant sur le lien "Télécharger" en
+    bas de l'illustration de la couverture.</p>
+</div>
+
+<div class="m-auto mt-4">
   <% if Document.last.file.attachment.previewable? %>
     <%= link_to(image_tag(Document.last.file.preview(resize: "600x600")), rails_blob_path(Document.last.file, disposition: "attachment")) %>
     <br>
