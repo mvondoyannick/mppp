@@ -1,0 +1,62 @@
+logged in as <%= current_user.email %>
+
+<div class="max-w-none mx-auto mt-8">
+  <div class="bg-white overflow-hidden sm:rounded-lg sm:shadow">
+
+    <%= form_with(url: mailman_path) do |form| %>
+      <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+        <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+          <div class="ml-4 mt-2">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+              Email groupé
+            </h3>
+          </div>
+          <div class="ml-4 mt-2 flex-shrink-0">
+            <%= form.submit "Envoyer courriel", class: "relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+          </div>
+        </div>
+      </div>
+
+      <ul class="divide-y divide-gray-200 py-4 px-4" aria-disabled="true">
+
+        <%= form.text_area :lorem, placeholder: "Saisir le message à envoyer par email", cols: 20, rows: 10, required: true, class: "px-5 py-5 w-full border boder-gray-200 rounded-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 mb-4" %>
+
+      </ul>
+
+    <% end %>
+
+  </div>
+</div>
+
+<div class="flex flex-col mt-12">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Name
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Title
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Email
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Role
+            </th>
+            <th scope="col" class="relative px-6 py-3">
+              <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+          <%= render @users %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

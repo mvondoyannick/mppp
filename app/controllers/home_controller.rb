@@ -1,8 +1,37 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!, only: :admin
+  before_action :payload_jwt, only: :download
+
   def index
   end
 
   def download
+    if params[:ray].present?
+
+    else
+      # not rails params found
+      redirect_to root_path, notice: "Information manquante"
+    end
+  end
+
+  # send mail to user
+  def mailman
+    a = RestClient.post "https://api:03ee8a853e31d8648cf06b82f7c30dcb-3d0809fb-3486193e" \
+	   "@api.mailgun.net/v3/sandbox023900a156f3425e819b872335392423.mailgun.org/messages",
+                    :from => "MPPP MAILER BOT <yannick.mvondo@paiemequick.com>",
+                    :to => "mvondoyannick@gmail.com",
+                    :subject => "Hello",
+                    :text => params[:lorem]
+
+    if a.code == 200
+      redirect_to dashboard_path, notice: "Mail sended"
+    else
+      redirect_to dashboard_path, notice: "Impossible to send mail"
+    end
+  end
+
+  def admin
+    @users = UserCommand.all.order(created_at: :desc)
   end
 
   def list
@@ -15,7 +44,13 @@ class HomeController < ApplicationController
       @command = UserCommand.new(valid_form_data)
       @command.ip = request.remote_ip
       if @command.save
-        redirect_to home_download_path(ray: request.request_id), notice: "Vous pouvez telecharger l'ensemble du manuel"
+        # create session payload
+        hmac_secret = 'my$ecretK3y'
+        exp = Time.now.to_i + 4 * 3600
+        exp_payload = { data: params[:email], exp: exp }
+        token = JWT.encode exp_payload, hmac_secret, 'HS256'
+        session[:token] = token
+        redirect_to home_download_path(ray: request.request_id, sess_id: session[:token]), notice: "Vous pouvez telecharger l'ensemble du manuel"
       else
         redirect_to root_path, notice: "Une erreur est sruvenue durant le traitement: #{@command.errors.details}"
       end
@@ -38,7 +73,27 @@ class HomeController < ApplicationController
   end
 
   private
+
   def valid_form_data
     params.permit(:name, :second_name, :email, :pays, :nombre)
+  end
+
+  # verify token payload
+  def payload_jwt
+    if session[:token].present?
+      token = session[:token] #JWT.encode exp_payload, hmac_secret, 'HS256'
+      hmac_secret = 'my$ecretK3y'
+      begin
+        puts "Session found : #{session[:token]}"
+        decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+      rescue JWT::ExpiredSignature
+        # Handle expired token, e.g. logout user or deny access
+        redirect_to root_path, notice: "Session expirée, merci de remplir de formulaire de nouveau!"
+      end
+
+    else
+      puts "No token found"
+      redirect_to root_path, notice: "Session expirée, merci de remplir de formulaire de nouveau!"
+    end
   end
 end

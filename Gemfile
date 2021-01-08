@@ -58,3 +58,6 @@ gem "honeybadger", "~> 4.0"
 gem "aws-sdk-s3", require: false
 gem 'country_select', '~> 4.0'
 gem "devise", "~> 4.7"
+gem 'jwt'
+gem 'mailgun-ruby', '~>1.1.6'
+gem 'sendgrid-ruby'
