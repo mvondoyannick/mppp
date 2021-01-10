@@ -33,22 +33,22 @@
 <div class="m-auto mt-4">
 
   <% if params[:lang].present? %>
-    <% if params[:lang] == "english" %>
+    <% if params[:lang] == "francais" %>
 
       <% if Document.second.file.attachment.previewable? %>
         <%= link_to(image_tag(Document.second.file.preview(resize: "600x600")), rails_blob_path(Document.second.file, disposition: "attachment")) %>
         <br>
-        <%= link_to "Download", rails_blob_path(Document.second.file, disposition: "attachment") %>
+        <%= link_to "Télécharger", rails_blob_path(Document.second.file, disposition: "attachment") %>
       <% elsif Document.second.file.variable? %>
         <%= link_to(image_tag(Document.second.file.variant(resize: "600x600")), rails_blob_path(Document.second.file, disposition: "attachment")) %>
       <% end %>
 
-    <% elsif params[:lang] == "francais" %>
+    <% elsif params[:lang] == "english" %>
 
       <% if Document.third.file.attachment.previewable? %>
         <%= link_to(image_tag(Document.third.file.preview(resize: "600x600")), rails_blob_path(Document.third.file, disposition: "attachment")) %>
         <br>
-        <%= link_to "Télécharger", rails_blob_path(Document.third.file, disposition: "attachment") %>
+        <%= link_to "Download", rails_blob_path(Document.third.file, disposition: "attachment") %>
       <% elsif Document.third.file.variable? %>
         <%= link_to(image_tag(Document.third.file.variant(resize: "600x600")), rails_blob_path(Document.third.file, disposition: "attachment")) %>
       <% end %>
