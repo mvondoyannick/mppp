@@ -50,7 +50,7 @@ class HomeController < ApplicationController
         exp_payload = { data: params[:email], exp: exp }
         token = JWT.encode exp_payload, hmac_secret, 'HS256'
         session[:token] = token
-        redirect_to home_download_path(ray: request.request_id, sess_id: session[:token]), notice: "Vous pouvez telecharger l'ensemble du manuel"
+        redirect_to home_download_path(ray: request.request_id, sess_id: session[:token], lang: params[:lang]), notice: "Vous pouvez telecharger l'ensemble du manuel"
       else
         redirect_to root_path, notice: "Une erreur est sruvenue durant le traitement: #{@command.errors.details}"
       end
