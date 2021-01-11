@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'home/download'
   match 'command', to: 'home#command', via: [:post, :get]
   get 'home/list'
+  get 'home/download_detail'
   match 'add', to: 'home#add', via: [:get, :post]
 
   # only for connected admin

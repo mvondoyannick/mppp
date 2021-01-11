@@ -38,6 +38,13 @@ class HomeController < ApplicationController
     @command = UserCommand.all.order(created_at: :desc)
   end
 
+  def download_detail
+    email = params[:email]
+    @email = email
+    @users = UserCommand.where(email: email)
+    @count = @users.sum(:nombre).to_i
+  end
+
   # make a command
   def command
     if request.post?

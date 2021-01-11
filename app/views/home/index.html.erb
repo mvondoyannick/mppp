@@ -54,7 +54,8 @@
                 <div class="flex">
                   <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                     <i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
-                  <%= form.text_field :pays, class: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500", required: true, placeholder: "Pays de résidence" %>
+                    <%= form.country_select(:pays, {include_blank: "Selectionner"}, { class: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none bg-white focus:border-indigo-500", required: true }, locale: 'fr') %>
+                  <%#= form.text_field :pays, class: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500", required: true, placeholder: "Pays de résidence" %>
                 </div>
               </div>
               <div class="w-1/2 px-3 mb-5">
@@ -62,7 +63,7 @@
                 <div class="flex">
                   <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                     <i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
-                  <%= form.number_field :nombre, class: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500", required: true, placeholder: "Nombre de copie" %>
+                  <%= form.number_field :nombre, min: 1, max: 10, class: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500", required: true, placeholder: "Nombre de copie" %>
                 </div>
               </div>
             </div>
@@ -73,11 +74,12 @@
                 <div class="flex">
                   <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                     <i class="mdi mdi-bell-outline text-gray-400 text-lg"></i></div>
-                    <%= select_tag "lang", options_for_select([["English", "english"], ["Français", "francais" ]]), {class: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500", required: true, prompt: "Selectionner la langue"} %>
+                  <%= select_tag "lang", options_for_select([["English", "english"], ["Français", "francais"]]), { class: "bg-white w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500", required: true, prompt: "Selectionner la langue" } %>
                   <%#= form.number_field :nombre, class: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500", required: true, placeholder: "Nombre de copie" %>
                 </div>
               </div>
             </div>
+
             <div class="flex -mx-3">
               <div class="w-full px-3 mb-5">
                 <%= form.submit "Enregistrer", class: "block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold" %>
