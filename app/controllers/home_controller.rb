@@ -2,7 +2,31 @@ class HomeController < ApplicationController
   before_action :authenticate_user!, only: :admin
   before_action :payload_jwt, only: :download
 
+  def identify
+
+  end
+
   def index
+    if request.post?
+      @code = params[:code]
+      query = Code.find_by(token: params[:code], used: false)
+      if query
+        query.used = true
+        respond_to do |format|
+          if query.save
+            format.html { redirect_to index_path, notice: 'Code was successfully created.' }
+            #redirect_to index_path
+          else
+            puts query.errors.messages
+            redirect_to root_path, notice: "Impossible de mettre à jour certaines informations! #{query.errors.details}"
+          end
+        end
+      else
+        redirect_to root_path, notice: "Ce code semble etre indisponible ou déja utilisé! Merci de vous rapprocher de l'administrateur"
+      end
+    else
+      # render view
+    end
   end
 
   def download
@@ -17,11 +41,11 @@ class HomeController < ApplicationController
   # send mail to user
   def mailman
     a = RestClient.post "https://api:03ee8a853e31d8648cf06b82f7c30dcb-3d0809fb-3486193e" \
-	   "@api.mailgun.net/v3/sandbox023900a156f3425e819b872335392423.mailgun.org/messages",
-                    :from => "MPPP MAILER BOT <yannick.mvondo@paiemequick.com>",
-                    :to => "mvondoyannick@gmail.com",
-                    :subject => "Hello",
-                    :text => params[:lorem]
+	    "@api.mailgun.net/v3/sandbox023900a156f3425e819b872335392423.mailgun.org/messages",
+                        :from => "MPPP MAILER BOT <yannick.mvondo@paiemequick.com>",
+                        :to => "mvondoyannick@gmail.com",
+                        :subject => "Hello",
+                        :text => params[:lorem]
 
     if a.code == 200
       redirect_to dashboard_path, notice: "Mail sended"
