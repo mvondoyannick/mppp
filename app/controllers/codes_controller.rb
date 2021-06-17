@@ -11,8 +11,8 @@ class CodesController < ApplicationController
     if request.post?
       # traitement des informations
       @code = params[:code]
-      delais = params[:delay].to_i
-      expire = delais.hours.from_now
+      delais = params[:delay].to_i # nombre de copie
+      #expire = delais.hours.from_now
 
       # search code on the platform
       query = Code.find_by_token(@code)
@@ -21,7 +21,7 @@ class CodesController < ApplicationController
         redirect_to new_code_path, notice: "Il semblerait qu'un code identique existe deja, merci d'en creer un nouveau."
       else
         # save this new recod
-        @new_code = Code.new(token: @code, delais: delais, expire: expire, used: false)
+        @new_code = Code.new(token: @code, nombre_copy: delais, rest_copy: 0, used: false)
         if @new_code.save
           redirect_to share_path(code: @code), notice: "Nouveau code enregistré avec succès!"
         else

@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!, only: :admin
   before_action :payload_jwt, only: :download
+  before_action :control_code, only: :index
 
   def identify
 
@@ -9,18 +10,28 @@ class HomeController < ApplicationController
   def index
     if request.post?
       @code = params[:code]
-      query = Code.find_by(token: params[:code], used: false)
+      query = Code.find_by(token: params[:code])
       if query
-        query.used = true
-        respond_to do |format|
-          if query.save
-            format.html { redirect_to index_path, notice: 'Code was successfully created.' }
-            #redirect_to index_path
-          else
-            puts query.errors.messages
-            redirect_to root_path, notice: "Impossible de mettre à jour certaines informations! #{query.errors.details}"
+        # get some information
+        if query.nombre_copy.to_i == query.rest_copy.to_i
+          puts 'limit reached'
+          redirect_to root_path, notice: "Le nombre maximum de #{query.nombre_copy} Manuel(s) de jeune pour ce code a été atteint, merci de demander un nouveau code."
+        else
+          query.used = true
+          respond_to do |format|
+            if query.save
+              format.html { redirect_to index_path(code: params[:code]), notice: 'Code was successfully created.' }
+            else
+              puts query.errors.messages
+              redirect_to root_path, notice: "Impossible de mettre à jour certaines informations! #{query.errors.details}"
+            end
           end
         end
+        # if query.nombre_copy.to_i >= query.rest_copy.to_i
+         
+        # else
+        #   redirect_to root_path, notice: "Le nombre maximum de #{query.nombre_copy} Manuel de jeune a été atteint, merci de demander un nouveau code."
+        # end
       else
         redirect_to root_path, notice: "Ce code semble etre indisponible ou déja utilisé! Merci de vous rapprocher de l'administrateur"
       end
@@ -107,6 +118,20 @@ class HomeController < ApplicationController
 
   def valid_form_data
     params.permit(:name, :second_name, :email, :pays, :nombre)
+  end
+
+  # control code
+  def control_code
+    if params[:code].present?
+      # verifier si le code existe
+      code = params[:code]
+      _query = Code.find_by_token(code)
+      if _query && _query.nombre_copy.to_i == _query.rest_copy.to_i
+        puts "failed"
+      end
+    else
+      redirect_to root_path, notice: "Session du code manquante, merci de renseigner un code pour continuer!"
+    end
   end
 
   # verify token payload

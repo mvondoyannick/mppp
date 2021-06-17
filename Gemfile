@@ -61,3 +61,5 @@ gem "devise", "~> 4.7"
 gem 'jwt'
 gem 'mailgun-ruby', '~>1.1.6'
 gem 'sendgrid-ruby'
+
+gem "stimulus_reflex", "~> 3.4"
