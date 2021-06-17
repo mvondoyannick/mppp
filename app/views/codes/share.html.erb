@@ -21,7 +21,7 @@
       navigator.share({
         title: document.title,
         text: "Entrer ce code <%= params[:code] %> pour obtenir votre manuel de jeûne et prière numérique -- ",
-        url: 'https://ministereprophetique.herokuapp.com/'
+        url: 'https://ministereprophetique.herokuapp.com/?t=<%= params[:code] %>'
       }).then(() => {
         console.log('Thanks for sharing!');
       })
