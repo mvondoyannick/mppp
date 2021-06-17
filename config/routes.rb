@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # only for connected admin
   scope :admin do
     get 'dashboard', to: 'home#admin'
+    get 'admin_codes', to: 'codes#index'
     match 'mailman', to: 'home#mailman', via: [:get, :post]
     match 'new_codes', to: 'codes#generate', via: [:post, :get]
     get 'share', to: 'codes#share'

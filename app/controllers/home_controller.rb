@@ -18,6 +18,7 @@ class HomeController < ApplicationController
           redirect_to root_path, notice: "Le nombre maximum de #{query.nombre_copy} Manuel(s) de jeune pour ce code a été atteint, merci de demander un nouveau code."
         else
           query.used = true
+          query.rest_copy = query.rest_copy.to_i + 1
           respond_to do |format|
             if query.save
               format.html { redirect_to index_path(code: params[:code]), notice: 'Code was successfully created.' }
