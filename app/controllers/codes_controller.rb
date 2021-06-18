@@ -1,4 +1,5 @@
 class CodesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_code, only: [:show, :edit, :update, :destroy]
 
   # GET /codes
