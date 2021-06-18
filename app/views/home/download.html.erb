@@ -69,3 +69,9 @@
     <%#= link_to(image_tag(Document.second.file.variant(resize: "600x600")), rails_blob_path(Document.second.file, disposition: "attachment")) %>
   <%# end %>
 </div>
+
+<script>
+  setTimeout(function(){
+    window.location.href = "<%= root_path %>";
+  }, 100000);
+</script>
