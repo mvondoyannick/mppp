@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :podcasts
   resources :codes
   devise_for :users, controllers: {
     sessions: 'users/sessions'
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   # devise_for :users
   match 'index', to: 'home#index', via: [:post, :get]
   get 'home/download'
+  get 'home/calendar'
   match 'command', to: 'home#command', via: [:post, :get]
   get 'home/list'
   get 'home/download_detail'

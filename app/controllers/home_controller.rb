@@ -7,6 +7,10 @@ class HomeController < ApplicationController
 
   end
 
+  # adding calendar
+  def calendar
+  end
+
   def index
     if request.post?
       @code = params[:code]
