@@ -1,8 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Meetings</h1>
+<h1 class="mt-10 text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">Calendrier programme</h1>
 
-<table>
+<%
+=begin%>
+ <table>
   <thead>
     <tr>
       <th>Name</th>
@@ -24,7 +26,9 @@
       </tr>
     <% end %>
   </tbody>
-</table>
+</table> 
+<%
+=end%>
 
 <br>
 
@@ -34,7 +38,7 @@
   <%= date %>
   <% meetings.each do |meeting| %>
     <div class="bg-white-100">
-      <%= link_to meeting.name, meeting_path(meeting.id), class: "text-indigo-500" %>
+      <%= link_to excerpt(meeting.name, '', radius: 40), meeting_path(meeting.id), class: "text-indigo-500" %>
     </div>
   <% end %>
 <% end %>
