@@ -16,14 +16,31 @@
     <%= form.text_field :title %>
   </div>
 
-  <div class="field">
-    <%= form.label :date_creation %>
-    <%= form.datetime_select :date_creation %>
+  <div>
+    <%= form.label :date_creation, class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1">
+    <%= form.datetime_select :date_creation, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :content %>
     <%= form.text_field :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :video_file %>
+    <%= form.file_field :video_file, accept: "video/*" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :audio_file %>
+    <%= form.file_field :audio_file, accept: "audio/*" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_detail %>
+    <%= form.rich_text_area :content_detail %>
   </div>
 
   <div class="actions">

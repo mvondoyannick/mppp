@@ -26,21 +26,18 @@
 
 <body>
 
-<div class="h-screen flex overflow-hidden bg-gray-100" x-data="{ open: false }" @keydown.window.escape="open = false">
+<div class="h-screen flex overflow-hidden bg-gray-100" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
   <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-  <div class="md:hidden" x-show="sidebarOpen" style="display: none;">
+  <div class="md:hidden" x-show="sidebarOpen" style="display: none;" 
+    x-transition:enter="transition ease-in-out duration-300 transform" 
+    x-transition:enter-start="-translate-x-full" 
+    x-transition:enter-end="translate-x-0" 
+    x-transition:leave="transition ease-in-out duration-300 transform" 
+    x-transition:leave-start="translate-x-0" 
+    x-transition:leave-end="-translate-x-full" 
+    x-description="Off-canvas menu, show/hide based on off-canvas menu state.">
     <div class="fixed inset-0 flex z-40">
-      <!--
-        Off-canvas menu overlay, show/hide based on off-canvas menu state.
-
-        Entering: "transition-opacity ease-linear duration-300"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "transition-opacity ease-linear duration-300"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
-      <div class="fixed inset-0" aria-hidden="true" x-show="open" @click="open = false">
+      <div class="fixed inset-0" aria-hidden="true" x-show="sidebarOpen" @click="sidebarOpen = true">
         <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
       </div>
       <!--
@@ -53,9 +50,16 @@
           From: "translate-x-0"
           To: "-translate-x-full"
       -->
-      <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-gray-800" x-show="open">
-        <div class="absolute top-0 right-0 -mr-12 pt-2">
-          <button class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+      <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-gray-800" x-show="sidebarOpen">
+        <div class="absolute top-0 right-0 -mr-12 pt-2" 
+          x-transition:enter="ease-in-out duration-300" 
+          x-transition:enter-start="opacity-0" 
+          x-transition:enter-end="opacity-100" 
+          x-transition:leave="ease-in-out duration-300" 
+          x-transition:leave-start="opacity-100" 
+          x-transition:leave-end="opacity-0" 
+          x-description="Close button, show/hide based on off-canvas menu state.">
+          <button class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" @click="sidebarOpen = false">
             <span class="sr-only">Close sidebar</span>
             <!-- Heroicon name: x -->
             <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -84,14 +88,14 @@
               Team
             </a>
 
-            <%= link_to podcasts_path, class: "bg-gray-900 text-white group flex items-center px-2 py-2 text-base font-medium rounded-md" do %>
+            <%= link_to podcasts_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md" do %>
               <svg class="text-gray-400 group-hover:text-gray-300 mr-4 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"></path>
               </svg>
               Podcasts
             <% end %>
 
-             <%= link_to home_calendar_path, class: "bg-gray-900 text-white group flex items-center px-2 py-2 text-base font-medium rounded-md" do %>
+             <%= link_to home_calendar_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md" do %>
               <svg class="text-gray-400 group-hover:text-gray-300 mr-4 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
               </svg>
@@ -202,7 +206,7 @@
   </div>
   <div class="flex flex-col w-0 flex-1 overflow-hidden">
     <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
-      <button class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden" @click="open = true">
+      <button class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden" @click="sidebarOpen = true">
         <span class="sr-only">Open sidebar</span>
         <!-- Heroicon name: menu-alt-2 -->
         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
