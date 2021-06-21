@@ -1,4 +1,5 @@
 class PodcastsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :new, :edit, :update]
   before_action :set_podcast, only: [:show, :edit, :update, :destroy]
 
   # GET /podcasts
