@@ -18,4 +18,6 @@ require("channels")
 
 require("trix")
 require("@rails/actiontext")
+//require ("social-share-button")
+//= require social-share-button
 import "controllers"

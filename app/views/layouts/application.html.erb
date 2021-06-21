@@ -17,14 +17,25 @@
   <meta property="og:title" content="MINISTERE PAR LA PAROLE PROPHETIQUE"/>
   <meta property="og:description" content="Programme de 14 Jours de Jeune et de prières."/>
 
+  <meta property="og:url"           content="https://ministereprophetique.herokuapp.com" />
+  <meta property="og:type"          content="Ministère Par la Parole Prophétique" />
+  <meta property="og:title"         content="MPPP" />
+  <meta property="og:description"   content="Retablir l'homme dans sa destinée prophétique en Christ" />
+  <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+  <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=60d06f95bae049001929f704&product=inline-share-buttons" async="async"></script>
 </head>
 
 <body>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0&appId=468302086651667&autoLogAppEvents=1" nonce="fHjharyW"></script>
 
 <div class="h-screen flex overflow-hidden bg-gray-100" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
   <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
