@@ -13,7 +13,7 @@
         </div>
         <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
           <% if podcast.video_file.attached? %>
-            <%= link_to podcast.video_file.filename, "#" %> <br>
+            <%= link_to podcast.video_file.filename, podcast %> <br>
             <%= podcast.video_file.content_type %>
           <% end %>
         </p>
