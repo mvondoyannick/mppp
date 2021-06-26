@@ -23,5 +23,10 @@ Rails.application.routes.draw do
     match 'new_codes', to: 'codes#generate', via: [:post, :get]
     get 'share', to: 'codes#share'
   end
+
+  # scope api
+  scope :api do
+    get 'index', to: 'api#index'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

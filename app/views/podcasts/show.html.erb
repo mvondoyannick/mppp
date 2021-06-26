@@ -5,27 +5,95 @@
   <%= @podcast.title %>
 </p>
 
-<p>
-  <% if @podcast.video_file.attached? %>
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="bg-gray-50 mt-10">
+  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+      <span class="block"><%= @podcast.title %></span>
+      <span class="block text-indigo-600">Start your free trial today.</span>
+    </h2>
+    <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+      <div class="inline-flex rounded-md shadow">
+        <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+          Get started
+        </a>
+      </div>
+      <div class="ml-3 inline-flex rounded-md shadow">
+        <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
+          Learn more
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p class="mt-10">
+  <% if @podcast.audio_file.attached? %>
+    Fichier Audio
     <% if @podcast.audio_file.audio? %>
       <audio controls src="<%= rails_blob_path(@podcast.audio_file) %>" ></audio>
       <br>
-    <% elsif @podcast.video_file.video? %>
-      <%= video_tag(rails_blob_path(@podcast.video_file), controls: true, preload: true, size: "300x280", ) %>
+    <% end %>
+  <% end %>
+
+  <% if @podcast.video_file.attached? %>
+    Fichier vidéo
+    <br />
+    <% if @podcast.video_file.video? %>
+      <%= video_tag(rails_blob_path(@podcast.video_file), controls: true, preload: true, height: 250 ) %>
 <!--      <video autoplay="autoplay" controls="true" height="250" width="250" src="<%#= @podcast.video_file.filename %>" type="<%#= @podcast.video_file.content_type %>"></video>-->
     <% end %>
   <% end %>
 </p>
 
-<p>
+<p class="mt-10">
   <strong>Date creation:</strong>
   <%= @podcast.date_creation %>
 </p>
 
-<p>
+<p class="mt-10">
   <strong>Content:</strong>
   <%= @podcast.content %>
 </p>
+
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="relative  mt-10 mb-4">
+  <div class="absolute inset-0 flex items-center" aria-hidden="true">
+    <div class="w-full border-t border-gray-300"></div>
+  </div>
+  <div class="relative flex items-center justify-between">
+    <span class="pr-3 bg-white text-lg font-medium text-gray-900">
+      Projects
+    </span>
+    <button type="button" class="inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <!-- Heroicon name: solid/plus-sm -->
+      <svg class="-ml-1.5 mr-1 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+      </svg>
+      <span>Button text</span>
+    </button>
+  </div>
+</div>
+
+
+
+<p>
+  <%= @podcast.content_detail.body %>
+</p>
+
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="relative">
+  <div class="absolute inset-0 flex items-center" aria-hidden="true">
+    <div class="w-full border-t border-gray-300"></div>
+  </div>
+  <div class="relative flex justify-center">
+    <span class="px-3 bg-white text-lg font-medium text-gray-900">
+      Commentaires
+    </span>
+  </div>
+</div>
+
 
 <p class="mt-10">
   <script async src="https://comments.app/js/widget.js?3" data-comments-app-website="ItAmBwuZ" data-limit="5"></script>
