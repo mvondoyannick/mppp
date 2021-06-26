@@ -8,9 +8,9 @@
 <p>
   <% if @podcast.video_file.attached? %>
     <% if @podcast.video_file.audio? %>
-      <audio autoplay controls src="<%= @podcast.video_file.filename %>" ></audio>
+      <audio autoplay controls src="<%= rails_blob_path(@podcast.video_file) %>" ></audio>
     <% elsif @podcast.video_file.video? %>
-      <%= video_tag(@podcast.video_file, controls: true, preload: true, size: "200x180") %>
+      <%= video_tag(rails_blob_path(@podcast.video_file), controls: true, preload: true, size: "200x180") %>
 <!--      <video autoplay="autoplay" controls="true" height="250" width="250" src="<%#= @podcast.video_file.filename %>" type="<%#= @podcast.video_file.content_type %>"></video>-->
     <% end %>
   <% end %>
