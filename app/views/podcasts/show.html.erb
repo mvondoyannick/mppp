@@ -6,6 +6,12 @@
 </p>
 
 <p>
+  <% if @podcast.video_file.attached? %>
+    <% if @podcast.video_file. %>
+  <% end %>
+</p>
+
+<p>
   <strong>Date creation:</strong>
   <%= @podcast.date_creation %>
 </p>
@@ -13,6 +19,10 @@
 <p>
   <strong>Content:</strong>
   <%= @podcast.content %>
+</p>
+
+<p>
+  <script async src="https://comments.app/js/widget.js?3" data-comments-app-website="ItAmBwuZ" data-limit="5"></script>
 </p>
 
 <%= link_to 'Edit', edit_podcast_path(@podcast) %> |

@@ -34,3 +34,6 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+.idea/inspectionProfiles/
+.idea/mppp.iml
+.idea/inspectionProfiles/Project_Default.xml
