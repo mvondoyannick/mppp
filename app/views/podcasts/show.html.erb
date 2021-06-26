@@ -34,15 +34,37 @@
     <% if @podcast.audio_file.audio? %>
       <audio controls src="<%= rails_blob_path(@podcast.audio_file) %>" ></audio>
       <br>
+      <%= link_to "Telécharger", rails_blob_path(@podcast.audio_file, disposition: "attachment") %> <br />
     <% end %>
   <% end %>
+
+  <!-- This example requires Tailwind CSS v2.0+ -->
+<div class="relative mt-10 mb-10" >
+  <div class="absolute inset-0 flex items-center" aria-hidden="true">
+    <div class="w-full border-t border-gray-300"></div>
+  </div>
+  <div class="relative flex justify-center">
+    <span class="px-2 bg-gray-100 text-sm text-gray-500">
+      Continue
+    </span>
+  </div>
+</div>
+
 
   <% if @podcast.video_file.attached? %>
     Fichier vidéo
     <br />
     <% if @podcast.video_file.video? %>
       <%= video_tag(rails_blob_path(@podcast.video_file), controls: true, preload: true, height: 250 ) %>
-<!--      <video autoplay="autoplay" controls="true" height="250" width="250" src="<%#= @podcast.video_file.filename %>" type="<%#= @podcast.video_file.content_type %>"></video>-->
+      <br />
+      <%= link_to rails_blob_path(@podcast.video_file, disposition: "attachment"), class: "inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
+        <!-- Heroicon name: solid/mail -->
+        <svg class="-ml-0.5 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+        </svg>
+        Télécharger
+      <% end %>
     <% end %>
   <% end %>
 </p>
@@ -63,10 +85,10 @@
     <div class="w-full border-t border-gray-300"></div>
   </div>
   <div class="relative flex items-center justify-between">
-    <span class="pr-3 bg-white text-lg font-medium text-gray-900">
+    <span class="pr-3 bg-gray-100 text-lg font-medium text-gray-900">
       Projects
     </span>
-    <button type="button" class="inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    <button type="button" class="inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-gray-100 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       <!-- Heroicon name: solid/plus-sm -->
       <svg class="-ml-1.5 mr-1 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
@@ -88,7 +110,7 @@
     <div class="w-full border-t border-gray-300"></div>
   </div>
   <div class="relative flex justify-center">
-    <span class="px-3 bg-white text-lg font-medium text-gray-900">
+    <span class="px-3 bg-gray-100 text-lg font-medium text-gray-900">
       Commentaires
     </span>
   </div>
