@@ -11,18 +11,18 @@
             <!-- Article -->
             <article class="overflow-hidden rounded-lg shadow-lg">
 
-              <a href="#">
-                <img alt="Placeholder" class="block h-auto w-full" src="https://picsum.photos/600/400/?random">
-              </a>
+              <%= link_to podcast do %>
+                <%= image_tag "https://picsum.photos/600/400/?random", class: "block h-auto w-full" %>
+              <% end %>
 
               <header class="flex items-center justify-between leading-tight p-2 md:p-4">
                 <h1 class="text-lg">
-                  <a class="no-underline hover:underline text-black" href="#">
-                    Article Title
-                  </a>
+                  <%= link_to podcast, class: "no-underline hover:underline text-black" do %>
+                    <%= podcast.title.upcase %>
+                  <% end %>
                 </h1>
                 <p class="text-grey-darker text-sm">
-                  11/1/19
+                  <%= podcast.created_at %>
                 </p>
               </header>
 
@@ -30,7 +30,7 @@
                 <a class="flex items-center no-underline hover:underline text-black" href="#">
                   <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
                   <p class="ml-2 text-sm">
-                    Author Name
+                    MPPP
                   </p>
                 </a>
                 <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
@@ -48,44 +48,39 @@
       </div>
     </div>
 
-    <% @podcasts.each do |podcast| %>
-    <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-      <li class="relative">
-        <div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-          <%= link_to podcast do %>
-            <%= image_tag "https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80", class: "object-cover pointer-events-none group-hover:opacity-75" %>
-          <% end %>
-          <button type="button" class="absolute inset-0 focus:outline-none">
-            <span class="sr-only"><%= podcast.title %></span>
-          </button>
-        </div>
-        <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-          <% if podcast.video_file.attached? %>
-            <p>
-              <%= link_to podcast.title.upcase, podcast %>
-            </p>
-            <%= link_to podcast.video_file.filename, podcast %> <br>
-            <%= podcast.video_file.content_type %>
-          <% end %>
-        </p>
-        <p class="block text-sm font-medium text-gray-500 pointer-events-none">3.9 MB</p>
-      </li>
+    <%# @podcasts.each do |podcast| %>
+<!--    <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">-->
+<!--      <li class="relative">-->
+<!--        <div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">-->
+          <%#= link_to podcast do %>
+            <%#= image_tag "https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80", class: "object-cover pointer-events-none group-hover:opacity-75" %>
+          <%# end %>
+<!--          <button type="button" class="absolute inset-0 focus:outline-none">-->
+<!--            <span class="sr-only"><%#= podcast.title %></span>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--        <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">-->
+          <%# if podcast.video_file.attached? %>
+<!--            <p>-->
+              <%#= link_to podcast.title.upcase, podcast %>
+<!--            </p>-->
+<!--            <%#= link_to podcast.video_file.filename, podcast %> <br>-->
+            <%#= podcast.video_file.content_type %>
+          <%# end %>
+<!--        </p>-->
+<!--        <p class="block text-sm font-medium text-gray-500 pointer-events-none">3.9 MB</p>-->
+<!--      </li>-->
 
-      <!-- More files... -->
-    </ul>
-      <%
-=begin%>
- <tr>
-        <td><%= podcast.title %></td>
-        <td><%= podcast.date_creation %></td>
-        <td><%= podcast.content %></td>
-        <td><%= link_to 'Show', podcast %></td>
-        <td><%= link_to 'Edit', edit_podcast_path(podcast) %></td>
-        <td><%= link_to 'Destroy', podcast, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr> 
-<%
-=end%>
-    <% end %>
+<!--    </ul>-->
+<!-- <tr>-->
+<!--        <td><%#= podcast.title %></td>-->
+<!--        <td><%#= podcast.date_creation %></td>-->
+<!--        <td><%#= podcast.content %></td>-->
+<!--        <td><%#= link_to 'Show', podcast %></td>-->
+<!--        <td><%#= link_to 'Edit', edit_podcast_path(podcast) %></td>-->
+<!--        <td><%#= link_to 'Destroy', podcast, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+<!--      </tr>-->
+    <%# end %>
 
 <br>
 
