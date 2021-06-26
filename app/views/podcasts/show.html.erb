@@ -7,7 +7,9 @@
 
 <p>
   <% if @podcast.video_file.attached? %>
-    <% if @podcast.video_file. %>
+    <% if @podcast.video_file.audio? %>
+      <video autoplay="autoplay" controls="true" height="250" width="250" src="<%= @podcast.video_file.filename %>" type="<%= @podcast.video_file.content_type %>"></video>
+    <% end %>
   <% end %>
 </p>
 
