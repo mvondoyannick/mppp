@@ -7,6 +7,10 @@ class HomeController < ApplicationController
 
   end
 
+  def team
+
+  end
+
   # adding calendar
   def calendar
   end
