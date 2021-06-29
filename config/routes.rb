@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
+
+  # for podcasts
+  #get 'podcasts/search'
+  scope :query do
+    get 'recherche', to: 'podcasts#search'
+    get 'response', to: 'podcast#rep'
+  end
   # devise_for :users
   match 'index', to: 'home#index', via: [:post, :get]
   get 'home/download'

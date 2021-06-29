@@ -20,3 +20,5 @@ require("trix")
 require("@rails/actiontext")
 //= require social-share-button
 import "controllers"
+
+import "stylesheets/application"

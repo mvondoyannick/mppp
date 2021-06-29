@@ -1,6 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1 class="mt-10">Podcasts</h1>
+<h1 class="mt-10 mb-4 text-sm">Podcasts</h1>
+
+<%= search_form_for @search do |form| %>
+  <%= form.text_field :title, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", placeholder: "Recherche un podcast" %>
+  <%= form.submit "Search", class: "bg-indigo-500 mt-4 shadow-sm px-8 py-2 rounded-md text-white" %>
+<% end %>
+
 
     <div class="container my-12 mx-auto px-4 md:px-12">
       <div class="flex flex-wrap -mx-1 lg:-mx-4">
@@ -12,7 +18,7 @@
             <article class="overflow-hidden rounded-lg shadow-lg">
 
               <%= link_to podcast do %>
-                <%= image_tag "https://picsum.photos/600/400/?random", class: "block h-auto w-full" %>
+                <%= image_tag "img.jpg", class: "block h-auto w-full" %>
               <% end %>
 
               <header class="flex items-center justify-between leading-tight p-2 md:p-4">
@@ -84,5 +90,5 @@
 
 <br>
 
-<%= link_to 'New Podcast', new_podcast_path %>
+<%= link_to 'Publier un nouveau podcast', new_podcast_path, class: "text-sm" %>
 
