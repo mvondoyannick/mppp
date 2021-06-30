@@ -11,7 +11,7 @@
 </div>
 
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="pb-5 sm:flex sm:items-center sm:justify-between mt-4">
+<!-- <div class="pb-5 sm:flex sm:items-center sm:justify-between mt-4">
   <h3 class="text-lg leading-6 font-medium text-gray-900">
     Payer directement le manuel ?
   </h3>
@@ -25,7 +25,7 @@
     </div>
 
   </div>
-</div>
+</div> -->
 
 <div class="m-auto mt-4">
 
@@ -36,8 +36,7 @@
         <%= link_to(image_tag(Document.second.file.preview(resize: "600x600")), rails_blob_path(Document.second.file, disposition: "attachment")) %>
         <br>
         <%= link_to "Télécharger le manuel", rails_blob_path(Document.second.file, disposition: "attachment"), 
-        class: "inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
-        data: {reflex: "click->ExampleReflex#redirect", id: Document.second.id} %>
+        class: "inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
       <% elsif Document.second.file.variable? %>
         <%= link_to(image_tag(Document.second.file.variant(resize: "600x600")), rails_blob_path(Document.second.file, disposition: "attachment")) %>
       <% end %>
