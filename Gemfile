@@ -69,3 +69,7 @@ gem "simple_calendar", "~> 2.4"
 gem "rails-i18n", "~> 6.0"
 
 gem "social-share-button", "~> 1.2"
+
+gem "ransack", "~> 2.4"
+
+gem "tailwindcss-rails", "~> 0.3.3"

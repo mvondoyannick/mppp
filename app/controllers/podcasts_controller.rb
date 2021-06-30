@@ -1,11 +1,12 @@
 class PodcastsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :new, :edit, :update]
-  before_action :set_podcast, only: [:show, :edit, :update, :destroy]
+  before_action :set_podcast, only: [:show, :edit, :update, :destroy], except: [:search, :index]
 
   # GET /podcasts
   # GET /podcasts.json
   def index
-    @podcasts = Podcast.all
+    @search = Podcast.ransack(params[:q])
+    @podcasts = @search.result(distinct: true) #result #Podcast.all
   end
 
   # GET /podcasts/1
@@ -20,6 +21,21 @@ class PodcastsController < ApplicationController
 
   # GET /podcasts/1/edit
   def edit
+  end
+
+  # search podcast
+  def search
+    @q = Podcast.ransack(params[:q])
+    @people = @q.result(distinct: true)
+
+    puts @people.as_json(only: [:id, :title])
+
+    respond_to do |format|
+      format.html { redirect_to :index, notice: 'Podcast hello.' }
+    end
+  end
+
+  def rep
   end
 
   # POST /podcasts
