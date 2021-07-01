@@ -32,7 +32,7 @@
 
 <br>
 
-<%= link_to 'New Meeting', new_meeting_path %>
+<%= link_to 'Ajouter un nouveau calendrier', new_meeting_path, class: "mt-4 mb-4 py-3 px-4 rounded-md bg-cyan-500 text-white shadow-md" %>
 
 <%= month_calendar(events: @meetings) do |date, meetings| %>
   <%= date %>
