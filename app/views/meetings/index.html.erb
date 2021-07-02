@@ -1,6 +1,164 @@
 <p id="notice"><%= notice %></p>
 
-<h1 class="mt-10 text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">Calendrier programme</h1>
+<!-- This example requires Tailwind CSS v2.0+ -->
+<nav class="flex" aria-label="Breadcrumb">
+  <ol class="flex items-center space-x-4">
+    <li>
+      <div>
+        <a href="/" class="text-gray-400 hover:text-gray-500">
+          <!-- Heroicon name: solid/home -->
+          <svg class="flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+          </svg>
+          <span class="sr-only">Home</span>
+        </a>
+      </div>
+    </li>
+
+    <li>
+      <div class="flex items-center">
+        <!-- Heroicon name: solid/chevron-right -->
+        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+        </svg>
+        <%= link_to controller_name.humanize, meetings_path, class: "hover:bg-transparent hover:text-indigo-500 ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" %>
+      </div>
+    </li>
+
+    <li>
+      <div class="flex items-center">
+        <!-- Heroicon name: solid/chevron-right -->
+        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+        </svg>
+        <a href="#" class="hover:bg-transparent hover:text-indigo-500 ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" aria-current="page"><%= params[:lang].humanize %></a>
+      </div>
+    </li>
+  </ol>
+</nav>
+
+
+<% if params[:lang].present? %>
+  <% if params[:lang] == "fr" %>
+
+    <div class="mt-8 pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Calendrier Programme
+      </h3>
+      <div class="mt-3 sm:mt-0 sm:ml-4">
+        <label for="search_candidate" class="sr-only">Search</label>
+        <div class="flex rounded-md shadow-sm">
+          <div class="relative flex-grow focus-within:z-10">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <!-- Heroicon name: solid/search -->
+              <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <input type="text" name="search_candidate" id="search_candidate" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-10 sm:hidden border-gray-300" placeholder="Recherher">
+            <input type="text" name="search_candidate" id="search_candidate" class="hidden focus:ring-indigo-500 focus:border-indigo-500 w-full rounded-none rounded-l-md pl-10 sm:block sm:text-sm border-gray-300" placeholder="Rechercher un thème">
+          </div>
+          <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+            <!-- Heroicon name: solid/sort-ascending -->
+            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+            </svg>
+            <span class="ml-2">Rechercher</span>
+            <!-- Heroicon name: solid/chevron-down -->
+            <svg class="ml-2.5 -mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <%= link_to meetings_path(lang: :en, pattend: :mppp), class: "-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" do %>
+            <!-- Heroicon name: solid/sort-ascending -->
+            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+            </svg>
+            <span class="ml-2">English version</span>
+            <!-- Heroicon name: solid/chevron-down -->
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <%= month_calendar(events: @meetings) do |date, meetings| %>
+        <%= date %>
+        <% meetings.each do |meeting| %>
+          <div class="bg-white-100">
+            <%= link_to excerpt(meeting.name, '', radius: 40), meeting_path(meeting.id), class: "text-indigo-500" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <br />
+
+<%= link_to 'Ajouter un nouveau calendrier', new_meeting_path, class: "mt-4 mb-8 py-3 px-4 rounded-md bg-indigo-500 text-white shadow-md" %>
+
+  <% elsif params[:lang] == "en" %>
+
+    <div class="mt-8 pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Program schedul
+      </h3>
+      <div class="mt-3 sm:mt-0 sm:ml-4">
+        <label for="search_candidate" class="sr-only">Search</label>
+        <div class="flex rounded-md shadow-sm">
+          <div class="relative flex-grow focus-within:z-10">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <!-- Heroicon name: solid/search -->
+              <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <input type="text" name="search_candidate" id="search_candidate" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-10 sm:hidden border-gray-300" placeholder="Search">
+            <input type="text" name="search_candidate" id="search_candidate" class="hidden focus:ring-indigo-500 focus:border-indigo-500 w-full rounded-none rounded-l-md pl-10 sm:block sm:text-sm border-gray-300" placeholder="Search a theme">
+          </div>
+          <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+            <!-- Heroicon name: solid/sort-ascending -->
+            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+            </svg>
+            <span class="ml-2">Search</span>
+            <!-- Heroicon name: solid/chevron-down -->
+            <svg class="ml-2.5 -mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <%= link_to meetings_path(lang: :fr, pattend: :mppp), class: "-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" do %>
+            <!-- Heroicon name: solid/sort-ascending -->
+            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+            </svg>
+            <span class="ml-2">Version Française</span>
+            <!-- Heroicon name: solid/chevron-down -->
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <%= month_calendar(events: @meetings) do |date, meetings| %>
+        <%= date %>
+        <% meetings.each do |meeting| %>
+          <div class="bg-white-100">
+            <%= link_to excerpt(meeting.name, '', radius: 40), meeting_path(meeting.id), class: "hover:bg-transparent hover:text-indigo-500 text-indigo-500" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <br />
+
+<%= link_to 'Program new schedul', new_meeting_path, class: "mt-4 mb-8 py-3 px-4 rounded-md bg-indigo-500 text-white shadow-md" %>
+  <% else %>
+
+    <p>Lorem not found</p>
+
+  <% end %>
+<% end %>
+
 
 <%
 =begin%>
@@ -29,16 +187,3 @@
 </table> 
 <%
 =end%>
-
-<br>
-
-<%= link_to 'Ajouter un nouveau calendrier', new_meeting_path, class: "mt-4 mb-4 py-3 px-4 rounded-md bg-cyan-500 text-white shadow-md" %>
-
-<%= month_calendar(events: @meetings) do |date, meetings| %>
-  <%= date %>
-  <% meetings.each do |meeting| %>
-    <div class="bg-white-100">
-      <%= link_to excerpt(meeting.name, '', radius: 40), meeting_path(meeting.id), class: "text-indigo-500" %>
-    </div>
-  <% end %>
-<% end %>

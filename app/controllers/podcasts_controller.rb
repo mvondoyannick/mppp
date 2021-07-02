@@ -73,7 +73,7 @@ class PodcastsController < ApplicationController
   def destroy
     @podcast.destroy
     respond_to do |format|
-      format.html { redirect_to podcasts_url, notice: 'Podcast was successfully destroyed.' }
+      format.html { redirect_to podcasts_url(lang: :fr), notice: 'Podcast was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

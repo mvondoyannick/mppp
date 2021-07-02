@@ -1,125 +1,201 @@
 <p id="notice"><%= notice %></p>
 
-<p class="mt-10">
-  <strong>Title:</strong>
-  <%= @podcast.title %>
-</p>
-
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="bg-gray-50 mt-10">
-  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
-    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-      <span class="block"><%= @podcast.title %></span>
-      <span class="block text-indigo-600">Start your free trial today.</span>
-    </h2>
-    <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
-      <div class="inline-flex rounded-md shadow">
-        <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
-          Get started
+<nav class="flex mb-8" aria-label="Breadcrumb">
+  <ol class="flex items-center space-x-4">
+    <li>
+      <div>
+        <a href="/" class="text-gray-400 hover:text-gray-500">
+          <!-- Heroicon name: solid/home -->
+          <svg class="flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+          </svg>
+          <span class="sr-only">Home</span>
         </a>
       </div>
-      <div class="ml-3 inline-flex rounded-md shadow">
-        <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
-          Learn more
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+    </li>
 
-
-<p class="mt-10">
-  <% if @podcast.audio_file.attached? %>
-    Fichier Audio
-    <% if @podcast.audio_file.audio? %>
-      <audio controls src="<%= rails_blob_path(@podcast.audio_file) %>" ></audio>
-      <br>
-      <%= link_to "Telécharger", rails_blob_path(@podcast.audio_file, disposition: "attachment") %> <br />
-    <% end %>
-  <% end %>
-
-  <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="relative mt-10 mb-10" >
-  <div class="absolute inset-0 flex items-center" aria-hidden="true">
-    <div class="w-full border-t border-gray-300"></div>
-  </div>
-  <div class="relative flex justify-center">
-    <span class="px-2 bg-gray-100 text-sm text-gray-500">
-      Continue
-    </span>
-  </div>
-</div>
-
-
-  <% if @podcast.video_file.attached? %>
-    Fichier vidéo
-    <br />
-    <% if @podcast.video_file.video? %>
-      <%= video_tag(rails_blob_path(@podcast.video_file), controls: true, preload: true, height: 250 ) %>
-      <br />
-      <%= link_to rails_blob_path(@podcast.video_file, disposition: "attachment"), class: "inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
-        <!-- Heroicon name: solid/mail -->
-        <svg class="-ml-0.5 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+    <li>
+      <div class="flex items-center">
+        <!-- Heroicon name: solid/chevron-right -->
+        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
         </svg>
-        Télécharger
-      <% end %>
-    <% end %>
-  <% end %>
-</p>
+        <%= link_to controller_name.humanize, podcasts_path, class: "hover:bg-transparent hover:text-indigo-500 ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" %>
+      </div>
+    </li>
 
-<p class="mt-10">
-  <strong>Date creation:</strong>
-  <%= @podcast.date_creation %>
-</p>
+    <li>
+      <div class="flex items-center">
+        <!-- Heroicon name: solid/chevron-right -->
+        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+        </svg>
+        <a href="#" class="hover:bg-transparent hover:text-indigo-500 ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" aria-current="page"><%= params[:id] %></a>
+      </div>
+    </li>
 
-<p class="mt-10">
-  <strong>Content:</strong>
-  <%= @podcast.content %>
-</p>
+    <li>
+      <div class="flex items-center">
+        <!-- Heroicon name: solid/chevron-right -->
+        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+        </svg>
+        <a href="#" class="hover:bg-transparent hover:text-indigo-500 ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" aria-current="page"><%= @podcast.title %></a>
+      </div>
+    </li>
+  </ol>
+</nav>
 
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="relative  mt-10 mb-4">
-  <div class="absolute inset-0 flex items-center" aria-hidden="true">
-    <div class="w-full border-t border-gray-300"></div>
+<div class="bg-white shadow overflow-hidden sm:rounded-lg mb-10">
+  <div class="px-4 py-5 sm:px-6">
+    <h3 class="text-lg leading-6 font-medium text-gray-900">
+      <%= @podcast.title %>
+    </h3>
+    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+      Ministère Par la Parole Prophétique
+    </p>
   </div>
-  <div class="relative flex items-center justify-between">
-    <span class="pr-3 bg-gray-100 text-lg font-medium text-gray-900">
-      Projects
-    </span>
-    <button type="button" class="inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-gray-100 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-      <!-- Heroicon name: solid/plus-sm -->
-      <svg class="-ml-1.5 mr-1 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-      </svg>
-      <span>Button text</span>
-    </button>
+  <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+    <dl class="sm:divide-y sm:divide-gray-200">
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Date création
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @podcast.created_at.strftime("%d-%m-%Y") %>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Type de programme
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          Programme de 14 jours de jeûne et de prière
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Résumé
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @podcast.content_detail.body %>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Instructions & orientations
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @podcast.content.empty? ? "Aucune instruction trouvé ou publiée" : @podcast.content %>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Fichier audio
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <% if @podcast.audio_file.attached? %>
+            <% if @podcast.audio_file.audio? %>
+              <audio controls src="<%= rails_blob_path(@podcast.audio_file) %>" ></audio>
+              <br>
+              <%= link_to "Telécharger", rails_blob_path(@podcast.audio_file, disposition: "attachment") %> <br />
+            <% else %>
+              Aucun fichier Audio trouvé
+            <% end %>
+          <% end %>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Fichier vidéo
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <% if @podcast.video_file.attached? %>
+            <% if @podcast.video_file.video? %>
+              <%= video_tag(rails_blob_path(@podcast.video_file), controls: true, preload: true, height: 250 ) %>
+              <br />
+              <%= link_to rails_blob_path(@podcast.video_file, disposition: "attachment"), class: "inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
+                <!-- Heroicon name: solid/mail -->
+                <svg class="-ml-0.5 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                </svg>
+                Télécharger
+              <% end %>
+            <% end %>
+            <% else %>
+            Aucun fichier vidéo trouvé ou publié
+          <% end %>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Téléchargement(s)
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
+            <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+              <div class="w-0 flex-1 flex items-center">
+                <!-- Heroicon name: solid/paper-clip -->
+                <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
+                </svg>
+                <% if @podcast.audio_file.attached? %>
+                  <% if @podcast.audio_file.audio? %>
+                    <span class="ml-2 flex-1 w-0 truncate">
+                      <%= @podcast.audio_file.filename %>
+                    </span>
+                  <% else %>
+                    Aucun fichier Audio trouvé
+                  <% end %>
+                </div>
+                <div class="ml-4 flex-shrink-0">
+                  <%= link_to "Telécharger", rails_blob_path(@podcast.audio_file, disposition: "attachment"), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+                </div>
+              <% end %>
+            </li>
+            <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+              <div class="w-0 flex-1 flex items-center">
+                <!-- Heroicon name: solid/paper-clip -->
+                <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
+                </svg>
+                <% if @podcast.video_file.attached? %>
+                  <% if @podcast.video_file.video? %>
+                    <span class="ml-2 flex-1 w-0 truncate">
+                      <%= @podcast.video_file.filename %>
+                    </span>
+                  <% else %>
+                    Aucun fichier Audio trouvé
+                  <% end %>
+                </div>
+                <div class="ml-4 flex-shrink-0">
+                  <%= link_to "Telécharger", rails_blob_path(@podcast.video_file, disposition: "attachment"), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+                </div>
+                <% else %>
+                  <div class="ml-4 flex-shrink-0">
+                    Aucun fichier vidéo à télécharger
+                  </div>
+              <% end %>
+            </li>
+          </ul>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Commentaires
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <p class="mt-10">
+            <script async src="https://comments.app/js/widget.js?3" data-comments-app-website="ItAmBwuZ" data-limit="5"></script>
+          </p>
+        </dd>
+      </div>
+    </dl>
   </div>
 </div>
 
-
-
-<p>
-  <%= @podcast.content_detail.body %>
-</p>
-
-<!-- This example requires Tailwind CSS v2.0+ -->
-<div class="relative">
-  <div class="absolute inset-0 flex items-center" aria-hidden="true">
-    <div class="w-full border-t border-gray-300"></div>
-  </div>
-  <div class="relative flex justify-center">
-    <span class="px-3 bg-gray-100 text-lg font-medium text-gray-900">
-      Commentaires
-    </span>
-  </div>
-</div>
-
-
-<p class="mt-10">
-  <script async src="https://comments.app/js/widget.js?3" data-comments-app-website="ItAmBwuZ" data-limit="5"></script>
-</p>
-
-<%= link_to 'Edit', edit_podcast_path(@podcast) %> |
+<%= link_to 'Edit', edit_podcast_path(@podcast), class: "mt-8" %> |
 <%= link_to 'Back', podcasts_path %>

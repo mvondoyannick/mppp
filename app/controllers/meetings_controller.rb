@@ -5,7 +5,15 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
-    @meetings = Meeting.all
+    if params[:lang].present?
+      if params[:lang] == "fr"
+        @meetings = Meeting.where(lang: params[:lang])
+      elsif params[:lang] == "en"
+        @meetings = Meeting.where(lang: params[:lang])
+      else
+        redirect_to root_path, notice: "Impossible de determiner la langue!"
+      end
+    end
   end
 
   # GET /meetings/1
@@ -70,6 +78,6 @@ class MeetingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meeting_params
-      params.require(:meeting).permit(:name, :start_time, :end_time, :exhortation)
+      params.require(:meeting).permit(:name, :start_time, :end_time, :exhortation, :lang)
     end
 end
