@@ -174,7 +174,7 @@
         <p class="block text-sm font-medium text-gray-500 pointer-events-none">
           Programme de 14 jours 2021
         </p>
-        <%= link_to 'Supprimer', podcast, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Supprimer', podcast, method: :delete, data: { confirm: 'Are you sure?' } if user_signed_in? %>
       <% end %>  
     </li>
   <% end %>
