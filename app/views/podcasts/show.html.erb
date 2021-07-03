@@ -224,7 +224,7 @@
     if (navigator.share) {
       navigator.share({
         title: document.title,
-        text: "<%= @podcast.title.humanize %>",
+        text: "<%= @podcast.title.capitalize %>",
         url: document.location.href
       }).then(() => {
         console.log('Thanks for sharing!');

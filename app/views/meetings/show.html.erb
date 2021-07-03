@@ -142,7 +142,7 @@
     if (navigator.share) {
       navigator.share({
         title: document.title,
-        text: "<%= @meeting.name.humanize %>",
+        text: "<%= @meeting.name.capitalize %>",
         url: document.location.href
       }).then(() => {
         console.log('Thanks for sharing!');
