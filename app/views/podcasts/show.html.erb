@@ -1,4 +1,24 @@
 <p id="notice"><%= notice %></p>
+<style>
+  /* .player .imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  } */
+
+  .container audio {
+    width: 100%
+    outline: none;
+  }
+
+  audio {
+    width: 100%;
+    max-width: 500px;
+  }
+</style>
 
 <!-- This example requires Tailwind CSS v2.0+ -->
 <nav class="flex mb-8" aria-label="Breadcrumb">
@@ -21,7 +41,7 @@
         <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
         </svg>
-        <%= link_to controller_name.humanize, podcasts_path, class: "hover:bg-transparent hover:text-indigo-500 ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" %>
+        <%= link_to controller_name.humanize, podcasts_path(lang: "fr"), class: "hover:bg-transparent hover:text-indigo-500 ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" %>
       </div>
     </li>
 
@@ -41,7 +61,7 @@
         <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
         </svg>
-        <a href="#" class="hover:bg-transparent hover:text-indigo-500 ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" aria-current="page"><%= @podcast.title %></a>
+        <a href="#" class="hover:bg-transparent hover:text-indigo-500 ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" aria-current="page"><%= excerpt(@podcast.title, "", radius: 10) %></a>
       </div>
     </li>
   </ol>
@@ -64,7 +84,7 @@
           Date création
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= @podcast.created_at.strftime("%d-%m-%Y") %>
+          <%= @podcast.created_at.strftime("%d %B %Y - %Hh:%Mm") %>
         </dd>
       </div>
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -98,9 +118,8 @@
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <% if @podcast.audio_file.attached? %>
             <% if @podcast.audio_file.audio? %>
-              <audio controls src="<%= rails_blob_path(@podcast.audio_file) %>" ></audio>
-              <br>
-              <%= link_to "Telécharger", rails_blob_path(@podcast.audio_file, disposition: "attachment") %> <br />
+              <div class="container">
+                <%= video_tag rails_blob_path(@podcast.audio_file), id: "player", controls: true, poster: image_url(rails_blob_path(@podcast.cover)) %>
             <% else %>
               Aucun fichier Audio trouvé
             <% end %>
@@ -197,5 +216,22 @@
   </div>
 </div>
 
-<%= link_to 'Edit', edit_podcast_path(@podcast), class: "mt-8" %> |
-<%= link_to 'Back', podcasts_path(lang: params[:lang]) %>
+<%= link_to 'Editer', edit_podcast_path(@podcast), class: "mt-8" if user_signed_in? %> |
+<%= link_to 'Back', podcasts_path(lang: params[:lang]) %> | <a href="#" onclick="share();">Partager</a>
+
+<script>
+  function share(){
+    if (navigator.share) {
+      navigator.share({
+        title: document.title,
+        text: "<%= @podcast.title.humanize %>",
+        url: document.location.href
+      }).then(() => {
+        console.log('Thanks for sharing!');
+      })
+      .catch(console.error);
+    } else {
+      // fallback
+    }
+  }
+</script>

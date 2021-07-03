@@ -34,7 +34,11 @@
   <div class="field">
     <%= form.label :Langage %>
     <%= form.select(:lang, [["Français", "fr"], ["English", "en"]], {include_blank: "Selectionner une langue"}, {class: "mt-1 block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"}) %>
+  </div>
 
+  <div class="field">
+    <%= form.label :meditationi_file %>
+    <%= form.file_field :audio %>
   </div>
 
   <div class="actions">
