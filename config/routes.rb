@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'home/download'
   get 'home/calendar'
   get 'home/team'
+  get 'home/tracker'
   match 'command', to: 'home#command', via: [:post, :get]
   get 'home/list'
   get 'home/download_detail'

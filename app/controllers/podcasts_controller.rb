@@ -1,4 +1,5 @@
 class PodcastsController < ApplicationController
+  include Trackable
   before_action :authenticate_user!, only: [:create, :new, :edit, :update]
   before_action :set_podcast, only: [:show, :edit, :update, :destroy], except: [:search, :index]
 
@@ -12,6 +13,7 @@ class PodcastsController < ApplicationController
   # GET /podcasts/1
   # GET /podcasts/1.json
   def show
+    track "Viewed Podcast", title: @podcast.title
   end
 
   # GET /podcasts/new

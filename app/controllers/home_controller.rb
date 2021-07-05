@@ -7,6 +7,11 @@ class HomeController < ApplicationController
 
   end
 
+  # ahoy traker
+  def tracker
+    @visits = Ahoy::Visit.includes(:events).all
+  end
+
   def team
 
   end

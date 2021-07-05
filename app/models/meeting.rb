@@ -3,4 +3,6 @@ class Meeting < ApplicationRecord
     validates :lang, presence: {message: "Selectionner la langue correspondante à la publication"}
     has_rich_text :exhortation
     has_one_attached :audio
+
+    visitable :ahoy_visit
 end

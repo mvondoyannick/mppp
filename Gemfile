@@ -73,3 +73,7 @@ gem "social-share-button", "~> 1.2"
 gem "ransack", "~> 2.4"
 
 gem "tailwindcss-rails", "~> 0.3.3"
+
+gem "ahoy_matey", "~> 3.2"
+
+gem "maxminddb", "~> 0.1.22"

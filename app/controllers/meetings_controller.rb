@@ -1,4 +1,5 @@
 class MeetingsController < ApplicationController
+  include Trackable
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_meeting, only: [:show, :edit, :update, :destroy]
 
@@ -19,6 +20,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/1
   # GET /meetings/1.json
   def show
+    track "Viewed Meeting", title: @meeting.name
   end
 
   # GET /meetings/new

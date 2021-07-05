@@ -1,0 +1,20 @@
+
+<table class="table">
+    <tbody>
+        <% @visits.each do |visit| %>
+            <tr>
+                <td class="text-lg"><%= visit.ip %></td>
+                <td><%= visit.user_agent %></td>
+                <td><%= visit.browser %></td>
+                <td><%= visit.os %></td>
+                <td><%= visit.started_at %></td>
+            </tr>
+            <% visit.events.each do |event| %>
+                <tr>
+                    <td><%= event.name %></td>
+                    <td><%= event.properties %>
+                </tr>
+            <% end %>
+        <% end %>
+    </tbody>
+</table >
