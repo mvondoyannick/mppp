@@ -9,6 +9,12 @@
     object-fit: cover;
   } */
 
+  audio::-webkit-media-controls-play-button,
+  audio::-webkit-media-controls-panel {
+    background-color: #18f;
+    color: #18f;
+  }
+
   .container audio {
     width: 100%
     outline: none;
@@ -118,8 +124,8 @@
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <% if @podcast.audio_file.attached? %>
             <% if @podcast.audio_file.audio? %>
-              <div class="container">
-                <%= video_tag rails_blob_path(@podcast.audio_file), id: "player", controls: true, poster: image_url(rails_blob_path(@podcast.cover)) %>
+              <div class="gap-example fixed w-full bottom-1 item-center right-0 xl:left-50">
+                <%= audio_tag rails_blob_path(@podcast.audio_file), id: "player", controls: true, class: "border-2 rounded-full bg-red-500 md:m-auto" %>
             <% else %>
               Aucun fichier Audio trouvé
             <% end %>
@@ -234,4 +240,13 @@
       // fallback
     }
   }
+
+  new GreenAudioPlayer('.gap-example');
+
+  // var sound = new Howl({
+  //   src: ["<%= rails_blob_path(@podcast.audio_file) %>"]
+  // });
+
+  //sound.play();
+
 </script>
