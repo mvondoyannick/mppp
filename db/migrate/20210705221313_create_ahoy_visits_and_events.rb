@@ -44,7 +44,7 @@ class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[6.0]
       t.datetime :started_at
     end
 
-    add_index :ahoy_visits, :visit_token, unique: true
+    # add_index :ahoy_visits, :visit_token, unique: true
 
     create_table :ahoy_events do |t|
       t.references :visit
