@@ -1,6 +1,6 @@
 class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[6.0]
   def change
-    create_table :ahoy_visits do |t|
+    #create_table :ahoy_visits do |t|
       # t.string :visit_token
       # t.string :visitor_token
 
@@ -56,5 +56,5 @@ class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[6.0]
     # end
 
     # add_index :ahoy_events, [:name, :time]
-  end
+  #end
 end

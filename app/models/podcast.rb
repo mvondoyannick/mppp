@@ -7,5 +7,5 @@ class Podcast < ApplicationRecord
     has_one_attached :cover
 
     # integrating ahoy
-    visitable :ahoy_visit
+    #visitable :ahoy_visit
 end
