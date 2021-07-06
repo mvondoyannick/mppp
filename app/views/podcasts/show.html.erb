@@ -222,8 +222,10 @@
   </div>
 </div>
 
-<%= link_to 'Editer', edit_podcast_path(@podcast), class: "mt-8" if user_signed_in? %> |
-<%= link_to 'Back', podcasts_path(lang: params[:lang]) %> | <a href="#" onclick="share();">Partager</a>
+<div class="mb-20">
+  <%= link_to 'Editer', edit_podcast_path(@podcast), class: "mt-8" if user_signed_in? %> |
+  <%= link_to 'Back', podcasts_path(lang: params[:lang]) %> | <a href="#" onclick="share();">Partager</a>
+</div>
 
 <script>
   function share(){
