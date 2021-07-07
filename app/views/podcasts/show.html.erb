@@ -125,7 +125,7 @@
           <% if @podcast.audio_file.attached? %>
             <% if @podcast.audio_file.audio? %>
               <div class="gap-example fixed w-full bottom-1 item-center right-0 xl:left-50">
-                <%= audio_tag rails_blob_path(@podcast.audio_file), id: "player", controls: true, class: "border-2 rounded-full bg-red-500 md:m-auto" %>
+                <%= audio_tag rails_blob_path(@podcast.audio_file), id: "player", controls: true, class: "border-2 rounded-full md:m-auto" %>
             <% else %>
               Aucun fichier Audio trouvé
             <% end %>
