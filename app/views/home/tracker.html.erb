@@ -39,7 +39,7 @@
                 <%= visit.started_at.strftime("%d-%^b-%Y - %Hh:%Mm:%S") %>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                <%= visit.country %>
+                <image_tag "https://www.countryflags.io/#{visit.country.downcase}/flat/32.png" %> &nbsp; <%= visit.country %>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <%= visit.browser %>
