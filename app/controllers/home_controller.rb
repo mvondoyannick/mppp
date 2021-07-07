@@ -9,7 +9,7 @@ class HomeController < ApplicationController
 
   # ahoy traker
   def tracker
-    @visits = Ahoy::Visit.all #includes(:events).all
+    @visits = Ahoy::Visit.order(started_at: :desc) #includes(:events).all
   end
 
   def team
