@@ -8,7 +8,8 @@ class ApiController < ApplicationController
           title: d.title,
           created: d.created_at,
           content: d.content,
-          file: "#{request.base_url}#{Rails.application.routes.url_helpers.rails_blob_path(d.audio_file, only_path: true)}"
+          file: "#{request.base_url}#{Rails.application.routes.url_helpers.rails_blob_path(d.audio_file, only_path: true)}",
+          poster: file: "#{request.base_url}#{Rails.application.routes.url_helpers.rails_blob_path(d.cover, only_path: true)}"
         }
       end
     }, status: 200
