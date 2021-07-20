@@ -6,9 +6,9 @@ class ApiController < ApplicationController
         {
           id: d.id,
           title: d.title,
-          created: d.created_at,
+          created: d.created_at.strftime("%e %b %Y"),
           content: d.content,
-          content_detail: d.content_detail.body,
+          content_detail: d.content_detail.body.to_plain_text,
           file: "#{request.base_url}#{Rails.application.routes.url_helpers.rails_blob_path(d.audio_file, only_path: true)}",
           poster: "#{request.base_url}#{Rails.application.routes.url_helpers.rails_blob_path(d.cover, only_path: true)}"
         }
