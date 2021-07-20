@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" %>
   </div>
 
   <div>
@@ -25,7 +25,17 @@
 
   <div class="field">
     <%= form.label :content %>
-    <%= form.text_field :content %>
+    <%= form.text_field :content, class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type_podcast %>
+    <%= form.select(:type_podcast, options_for_select([["Meditation matinale", "Meditation matinale"], ["Prayer lunch", "Prayer Lunch"], ["Sujet de Prière", "Sujet de prière"], ["Enseignements", "Enseignement"]]), class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md") %>
+  </div>
+
+  <div class="field">
+    <%= form.label :extrait %>
+    <%= form.text_area :extrait, rows: 6, class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" %>
   </div>
 
   <div class="field">
@@ -40,7 +50,7 @@
 
   <div class="field">
     <%= form.label :content_detail %>
-    <%= form.rich_text_area :content_detail %>
+    <%= form.rich_text_area :content_detail, class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" %>
   </div>
 
   <div class="field">
@@ -49,6 +59,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Enregistrer", class: "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
   </div>
 <% end %>

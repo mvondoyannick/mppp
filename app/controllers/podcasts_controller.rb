@@ -88,6 +88,6 @@ class PodcastsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def podcast_params
-      params.require(:podcast).permit(:title, :date_creation, :content, :video_file, :audio_file, :content_detail, :cover)
+      params.require(:podcast).permit(:title, :date_creation, :content, :video_file, :audio_file, :content_detail, :cover, :type_podcast, :extrait)
     end
 end

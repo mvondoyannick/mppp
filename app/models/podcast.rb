@@ -1,5 +1,7 @@
 class Podcast < ApplicationRecord
     validates :title, presence: true
+    #validates :type_podcast, presence: true
+    validates :extrait, presence: true
     has_one_attached :video_file
     has_one_attached :audio_file
     has_one_attached :pdf_file
