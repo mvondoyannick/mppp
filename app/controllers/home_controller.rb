@@ -7,6 +7,10 @@ class HomeController < ApplicationController
 
   end
 
+  def accueil
+    @podcasts = Podcast.limit(6).order(created_at: :desc)
+  end
+
   # ahoy traker
   def tracker
     @visits = Ahoy::Visit.order(started_at: :desc) #includes(:events).all

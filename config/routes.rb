@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :type_podcasts
   resources :meetings
   resources :podcasts
   resources :codes
@@ -21,7 +22,8 @@ Rails.application.routes.draw do
   match 'command', to: 'home#command', via: [:post, :get]
   get 'home/list'
   get 'home/download_detail'
-  root 'home#identify'
+  root 'home#accueil'
+  get 'home/identify'
   match 'add', to: 'home#add', via: [:get, :post]
 
   # only for connected admin
@@ -37,6 +39,7 @@ Rails.application.routes.draw do
   scope :api, defaults: {format: :json} do
     scope :v1 do
       get 'index', to: 'api#index'
+      get 'type', to: "api#get_type_podcast"
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -1,0 +1,312 @@
+    <style>
+        a.hover {
+            background: transparent;
+            color: #18f;
+        }
+        .work-sans {
+            font-family: 'Work Sans', sans-serif;
+        }
+                
+        #menu-toggle:checked + #menu {
+            display: block;
+        }
+        
+        .hover\:grow {
+            transition: all 0.3s;
+            transform: scale(1);
+        }
+        
+        .hover\:grow:hover {
+            transform: scale(1.02);
+        }
+        
+        .carousel-open:checked + .carousel-item {
+            position: static;
+            opacity: 100;
+        }
+        
+        .carousel-item {
+            -webkit-transition: opacity 0.6s ease-out;
+            transition: opacity 0.6s ease-out;
+        }
+        
+        #carousel-1:checked ~ .control-1,
+        #carousel-2:checked ~ .control-2,
+        #carousel-3:checked ~ .control-3 {
+            display: block;
+        }
+        
+        .carousel-indicators {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            bottom: 2%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 10;
+        }
+        
+        #carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
+        #carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
+        #carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
+            color: #000;
+            /*Set to match the Tailwind colour you want the active one to be */
+        }
+    </style>
+<body class="bg-gray text-gray-600 work-sans leading-normal text-base tracking-normal">
+
+    <!--Nav-->
+    <nav id="header" class="w-full z-30 top-0 py-1">
+        <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
+
+            <label for="menu-toggle" class="cursor-pointer md:hidden block">
+                <svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <title>menu</title>
+                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+                </svg>
+            </label>
+            <input class="hidden" type="checkbox" id="menu-toggle" />
+
+            <div class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
+                <nav>
+                    <ul class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
+                        <li><%= link_to "Podcasts", podcasts_path(lang: "fr"), class: "inline-block no-underline hover:text-black hover:underline py-2 px-4 hover:bg-transparent hover:text-red-500" %></li>
+                        <li><%= link_to "Manuels", home_identify_path, class: "inline-block no-underline hover:text-black hover:underline py-2 px-4 hover:bg-transparent hover:text-red-500" %></li>
+                        <%= link_to_unless(user_signed_in?, "Se connecter", new_user_session_path, class: "inline-block no-underline hover:text-black hover:underline py-2 px-4 hover:bg-transparent hover:text-red-500") do |name| %>
+                            <%= link_to("Dashboard", dashboard_path, class: "inline-block no-underline hover:text-black hover:underline py-2 px-4 hover:bg-transparent hover:text-red-500") %>
+                        <% end %>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="order-1 md:order-2">
+                <%= link_to root_path, class: "flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl hover:bg-transparent hover:text-red-500" do %>
+                    <%= image_tag "mppp.png", size: "32x32", class: "mr-2" %>
+                    MINISTERE PAR LA PAROLE PROPHETIQUE
+                <% end %>
+            </div>
+
+            <div class="order-2 md:order-3 flex items-center" id="nav-content">
+
+                <%= link_to new_user_session_path, class: "inline-block no-underline hover:text-black hover:bg-transparent hover:text-red-500" do %>
+                    <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <circle fill="none" cx="12" cy="7" r="3" />
+                        <path d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" />
+                    </svg>
+                <% end %>
+
+                <a class="pl-3 inline-block no-underline hover:text-black hover:bg-transparent hover:text-red-500" href="#">
+                    <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M21,7H7.462L5.91,3.586C5.748,3.229,5.392,3,5,3H2v2h2.356L9.09,15.414C9.252,15.771,9.608,16,10,16h8 c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944C21.649,7.169,21.336,7,21,7z M17.341,14h-6.697L8.371,9 h11.112L17.341,14z" />
+                        <circle cx="10.5" cy="18.5" r="1.5" />
+                        <circle cx="17.5" cy="18.5" r="1.5" />
+                    </svg>
+                </a>
+
+            </div>
+        </div>
+    </nav>
+
+    <%
+=begin%>
+ <div class="carousel relative container mx-auto" style="max-width:1600px;">
+        <div class="carousel-inner relative overflow-hidden w-full">
+            <!--Slide 1-->
+            <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" checked="checked" hidden="">
+            <div class="carousel-item absolute opacity-0" style="height:50vh;">
+                <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style="background-image: url('https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80');">
+
+                    <div class="container mx-auto">
+                        <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
+                            <p class="text-black text-2xl my-4">Stripy Zig Zag Jigsaw Pillow and Duvet Set</p>
+                            <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">view product</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <label for="carousel-3" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
+            <label for="carousel-2" class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+
+            <!--Slide 2-->
+            <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
+            <div class="carousel-item absolute opacity-0 bg-cover bg-right" style="height:50vh;">
+                <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style="background-image: url('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjM0MTM2fQ&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80');">
+
+                    <div class="container mx-auto">
+                        <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
+                            <p class="text-black text-2xl my-4">Real Bamboo Wall Clock</p>
+                            <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">view product</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <label for="carousel-1" class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
+            <label for="carousel-3" class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+
+            <!--Slide 3-->
+            <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
+            <div class="carousel-item absolute opacity-0" style="height:50vh;">
+                <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-bottom" style="background-image: url('https://images.unsplash.com/photo-1519327232521-1ea2c736d34d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80');">
+
+                    <div class="container mx-auto">
+                        <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
+                            <p class="text-black text-2xl my-4">Brown and blue hardbound book</p>
+                            <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">view product</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <label for="carousel-2" class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
+            <label for="carousel-1" class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+
+            <!-- Add additional indicators for each slide-->
+            <ol class="carousel-indicators">
+                <li class="inline-block mr-3">
+                    <label for="carousel-1" class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900">•</label>
+                </li>
+                <li class="inline-block mr-3">
+                    <label for="carousel-2" class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900">•</label>
+                </li>
+                <li class="inline-block mr-3">
+                    <label for="carousel-3" class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900">•</label>
+                </li>
+            </ol>
+
+        </div>
+    </div> 
+<%
+=end%>
+	 
+
+<section class="w-full mx-auto bg-nordic-gray-light flex pt-12 md:pt-0 md:items-center bg-cover bg-right" style="max-width:1600px; height: 32rem; background-image: url('https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');">
+
+	<div class="container mx-auto">
+
+		<div class="flex flex-col w-full lg:w-1/2 justify-center items-start  px-6 tracking-wide">
+			<h1 class="text-black text-2xl my-4">Suivez la Parole de Dieu à travers nos enseignements, prédications, Prayer Lunch et recevez des bénédictions</h1>
+			<%= link_to "Podcasts", podcasts_path(lang: "fr"), class: "hover:bg-transparent hover:text-red-500 text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" %>
+
+		</div>
+
+	  </div>
+
+</section>
+
+    <section class="bg-white py-8">
+
+        <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+
+            <nav id="store" class="w-full z-30 top-0 px-6 py-1">
+                <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
+
+                    <a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">
+				Derniers podcasts
+			</a>
+
+                    <div class="flex items-center" id="store-nav-content">
+
+                        <a class="pl-3 inline-block no-underline hover:text-black" href="#">
+                            <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M7 11H17V13H7zM4 7H20V9H4zM10 15H14V17H10z" />
+                            </svg>
+                        </a>
+
+                        <a class="pl-3 inline-block no-underline hover:text-black" href="#">
+                            <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z" />
+                            </svg>
+                        </a>
+
+                    </div>
+              </div>
+            </nav>
+
+            <% @podcasts.each do |podcast| %>
+
+            <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                <%= link_to podcast, class: "hover:bg-transparent hover:text-red-500" do %>
+                    <img class="hover:grow hover:shadow-lg" src="https://images.unsplash.com/photo-1555982105-d25af4182e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80">
+                    
+                    <div class="px-4 h-64 py-4 bg-gray-200">
+                        <h1 class="text-xl font-semibold text-gray-800 dark:text-white"><%= podcast.title %></h1>
+
+                        <p class="py-2 text-gray-700 dark:text-gray-200">
+                            <%= podcast.extrait.humanize %>
+                        </p>
+                        
+                        <div class="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+
+                            <h1 class="px-2 text-sm"><%= podcast.created_at.strftime('%d %b %Y ') %></h1>
+                        </div>
+
+                        <div class="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+
+                            <h1 class="px-2 text-sm">Apôtre Valentin FOTUE</h1>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+
+            <% end %>
+
+            </div>
+
+    </section>
+
+    <section class="bg-white py-8 mt-12">
+
+        <div class="container py-8 px-6 mx-auto">
+
+            <a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl mb-8" href="#">
+			A PROPOS
+		</a>
+
+            <p class="mt-8 mb-8">This template is inspired by the stunning nordic minamalist design - in particular:
+                <br>
+                <a class="text-gray-800 underline hover:text-gray-900" href="http://savoy.nordicmade.com/" target="_blank">Savoy Theme</a> created by <a class="text-gray-800 underline hover:text-gray-900" href="https://nordicmade.com/">https://nordicmade.com/</a> and <a class="text-gray-800 underline hover:text-gray-900" href="https://www.metricdesign.no/" target="_blank">https://www.metricdesign.no/</a></p>
+
+            <p class="mb-8">Lorem ipsum dolor sit amet, consectetur <a href="#">random link</a> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vel risus commodo viverra maecenas accumsan lacus vel facilisis volutpat. Vitae aliquet nec ullamcorper sit. Nullam eget felis eget nunc lobortis mattis aliquam. In est ante in nibh mauris. Egestas congue quisque egestas diam in. Facilisi nullam vehicula ipsum a arcu. Nec nam aliquam sem et tortor consequat. Eget mi proin sed libero enim sed faucibus turpis in. Hac habitasse platea dictumst quisque. In aliquam sem fringilla ut. Gravida rutrum quisque non tellus orci ac auctor augue mauris. Accumsan lacus vel facilisis volutpat est velit egestas dui id. At tempor commodo ullamcorper a. Volutpat commodo sed egestas egestas fringilla. Vitae congue eu consequat ac.</p>
+
+        </div>
+
+    </section>
+
+    <footer class="container mx-auto bg-white py-8 border-t border-gray-400">
+        <div class="container flex px-3 py-8 ">
+            <div class="w-full mx-auto flex flex-wrap">
+                <div class="flex w-full lg:w-1/2 ">
+                    <div class="px-3 md:px-0">
+                        <h3 class="font-bold text-gray-900">Suivez-vous</h3>
+                        <p class="py-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel mi ut felis tempus commodo nec id erat. Suspendisse consectetur dapibus velit ut lacinia.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex w-full lg:w-1/2 lg:justify-end lg:text-right">
+                    <div class="px-3 md:px-0">
+                        <h3 class="font-bold text-gray-900">Réseaux sociaux</h3>
+                        <ul class="list-reset items-center pt-3">
+                            <li>
+                                <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#">Facebook</a>
+                                <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#">Youtube</a>
+                                <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#">Telegram</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
