@@ -159,7 +159,8 @@
               <% end %>
             <% end %>
             <% else %>
-            Aucun fichier vidéo trouvé ou publié
+            Aucun fichier vidéo trouvé ou publié <br>
+            <div id="waveform"></div>
           <% end %>
         </dd>
       </div>
@@ -251,7 +252,17 @@
     }
   }
 
-  new GreenAudioPlayer('.gap-example');
+  var wavesurfer = WaveSurfer.create({
+    container: "#waveform",
+    waveColor: '#D9DCFF',
+    progressColor: '#4353FF',
+    cursorColor: '#4353FF',
+    barWidth: 3,
+    barRadius: 3,
+    cursorWidth: 1, 
+    height: 200,
+    barGap: 3
+  });
 
   // var sound = new Howl({
   //   src: ["<%= rails_blob_path(@podcast.audio_file) %>"]
