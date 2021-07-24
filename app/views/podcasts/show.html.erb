@@ -264,6 +264,9 @@
     barGap: 3
   });
 
+  // load audio file
+  wavesurfer.load("<%= rails_blob_path(@podcast.audio_file) %>");
+
   // var sound = new Howl({
   //   src: ["<%= rails_blob_path(@podcast.audio_file) %>"]
   // });
