@@ -16,6 +16,13 @@ class ApiController < ApplicationController
     }, status: 200
   end
 
+  # list all categories
+  def get_type_podcast
+    render json: {
+      data: TypePodcast.all,
+    }, status: 200
+  end
+
   # search content via API
   def search_content
     q = params[:q]

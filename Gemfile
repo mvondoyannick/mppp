@@ -77,3 +77,7 @@ gem "tailwindcss-rails", "~> 0.3.3"
 gem "ahoy_matey", "~> 3.2"
 
 gem "maxminddb", "~> 0.1.22"
+
+gem "id3tag", "~> 0.14.1"
+
+gem "meta-tags", "~> 2.14"

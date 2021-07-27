@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MPPP - MINISTERE PAR LA PAROLE PROPHETIQUE</title>
+  <%
+=begin%>
+ <title>MPPP - MINISTERE PAR LA PAROLE PROPHETIQUE</title> 
+<%
+=end%>
+  <%= display_meta_tags site: "MPPP" %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <% favicon_link_tag 'mppp.png', rel: 'apple-touch-icon', type: 'image/png' %>

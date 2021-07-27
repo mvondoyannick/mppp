@@ -168,14 +168,14 @@
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M17 21C15.8954 21 15 20.1046 15 19V15C15 13.8954 15.8954 13 17 13H19V12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12V13H7C8.10457 13 9 13.8954 9 15V19C9 20.1046 8.10457 21 7 21H3V12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12V21H17ZM19 15H17V19H19V15ZM7 15H5V19H7V15Z"/>
               </svg>
 
-              <h1 class="mx-3 text-lg font-semibold text-white"><%= podcast.type_podcast.nil? ? "Not identified" : podcast.type_podcast %></h1>
+              <h1 class="mx-3 text-lg font-semibold text-white"><%= podcast.type_podcast_id.nil? ? "Not identified" : podcast.type_podcast.name %></h1>
           </div>
 
-          <div class="px-6 py-4">
+          <div class="px-6 py-4 h-64">
               <h1 class="text-xl font-semibold text-gray-800 dark:text-white"><%= podcast.title %></h1>
 
               <p class="py-2 text-gray-700 dark:text-gray-400">
-                <%= podcast.extrait.humanize %>
+                <%= excerpt(podcast.extrait.humanize, "", radius: 300) %>
               </p>
               
               <div class="flex items-center mt-4 text-gray-700 dark:text-gray-200">
@@ -197,36 +197,6 @@
       </div>
     <% end %>  
 
-    <%
-=begin%>
- <li class="relative">
-      <%= link_to podcast do %>
-        <div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-          <% if podcast.cover.attached? %>
-            <%= image_tag rails_blob_path(podcast.cover), class: "object-cover" %>
-          <% else %>
-            <%= image_tag "img.jpg", class: "object-cover h-48 w-full" %>
-          <% end %>
-          <button type="button" class="absolute inset-0 focus:outline-none">
-            <span class="sr-only">
-              <%= podcast.title.upcase %>
-            </span>
-          </button>
-        </div>
-        <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-          <%= podcast.title.upcase %>
-        </p>
-        <p class="block text-sm font-medium text-gray-500 pointer-events-none">
-          Publié le <%= podcast.created_at.strftime('%d-%m-%Y ') %> par MPPP
-        </p>
-        <p class="block text-sm font-medium text-gray-500 pointer-events-none">
-          Programme de 14 jours 2021
-        </p>
-        <%= link_to 'Supprimer', podcast, method: :delete, data: { confirm: 'Are you sure?' } if user_signed_in? %>
-      <% end %>  
-    </li> 
-<%
-=end%>
   <% end %>
 
   <!-- More files... -->

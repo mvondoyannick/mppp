@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_20_112610) do
+ActiveRecord::Schema.define(version: 2021_07_21_045305) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -118,6 +118,14 @@ ActiveRecord::Schema.define(version: 2021_07_20_112610) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "extrait"
     t.string "type_podcast"
+    t.bigint "type_podcast_id"
+    t.index ["type_podcast_id"], name: "index_podcasts_on_type_podcast_id"
+  end
+
+  create_table "type_podcasts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "user_commands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -147,4 +155,5 @@ ActiveRecord::Schema.define(version: 2021_07_20_112610) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "podcasts", "type_podcasts"
 end

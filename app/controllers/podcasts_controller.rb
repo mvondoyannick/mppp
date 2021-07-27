@@ -6,6 +6,9 @@ class PodcastsController < ApplicationController
   # GET /podcasts
   # GET /podcasts.json
   def index
+    @page_title = "Nos podcasts"
+    @page_description = "Consulter les podcasts"
+    @page_keywords = "Podcasts, enseignements, Parole de Dieu"
     @search = Podcast.ransack(params[:q])
     @podcasts = @search.result(distinct: true) #result #Podcast.all
   end
@@ -13,16 +16,21 @@ class PodcastsController < ApplicationController
   # GET /podcasts/1
   # GET /podcasts/1.json
   def show
+    @page_title = @podcast.title
+    @page_description = "Consulter les podcasts"
+    @page_keywords = "Podcasts, enseignements, Parole de Dieu"
     track "Viewed Podcast", title: @podcast.title
   end
 
   # GET /podcasts/new
   def new
+    @page_title = "Nouvelle publication"
     @podcast = Podcast.new
   end
 
   # GET /podcasts/1/edit
   def edit
+    @page_title = "Editer #{@podcast.title}"
   end
 
   # search podcast
@@ -88,6 +96,6 @@ class PodcastsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def podcast_params
-      params.require(:podcast).permit(:title, :date_creation, :content, :video_file, :audio_file, :content_detail, :cover, :type_podcast, :extrait)
+      params.require(:podcast).permit(:title, :date_creation, :content, :video_file, :audio_file, :content_detail, :cover, :type_podcast_id, :extrait)
     end
 end
