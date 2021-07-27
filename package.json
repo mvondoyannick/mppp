@@ -18,7 +18,8 @@
     "stimulus_reflex": "3.4.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "trix": "^1.2.0",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "wavesurfer.js": "^5.1.0"
   },
   "version": "0.1.0",
   "devDependencies": {
