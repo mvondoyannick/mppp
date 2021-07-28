@@ -1,4 +1,5 @@
 class SocialNetworksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_social_network, only: [:show, :edit, :update, :destroy]
 
   # GET /social_networks
