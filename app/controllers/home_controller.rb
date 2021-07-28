@@ -8,6 +8,7 @@ class HomeController < ApplicationController
   end
 
   def accueil
+    @page_title = "Ministère Par la Parole Prophétique"
     @podcasts = Podcast.limit(6).order(created_at: :desc)
   end
 
@@ -22,6 +23,7 @@ class HomeController < ApplicationController
 
   # adding calendar
   def calendar
+    @page_title = "Calendrier des programmes"
   end
 
   def index
@@ -84,6 +86,7 @@ class HomeController < ApplicationController
   end
 
   def admin
+    @page_title = "Administration"
     @users = UserCommand.all.order(created_at: :desc)
   end
 

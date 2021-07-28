@@ -8,6 +8,7 @@ class Podcast < ApplicationRecord
     has_rich_text :content_detail
     has_one_attached :cover
     belongs_to :type_podcast
+    belongs_to :author
 
     # integrating ahoy
     #visitable :ahoy_visit

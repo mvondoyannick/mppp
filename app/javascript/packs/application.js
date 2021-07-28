@@ -18,9 +18,6 @@ require("channels")
 
 require("trix")
 require("@rails/actiontext")
-require("howler")
-require("plyr")
-require("green-audio-player")
 require("wavesurfer.js")
 //= require social-share-button
 import "controllers"

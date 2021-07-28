@@ -80,7 +80,11 @@
       <%= @podcast.title %>
     </h3>
     <p class="mt-1 max-w-2xl text-sm text-gray-500">
-      Ministère Par la Parole Prophétique
+    <% if @podcast.author_id.nil? %>
+      Pasteur du minisère
+    <% else %>
+      Par <%= link_to @podcast.author.name.upcase, author_path(id: @podcast.author_id), class: "hover:bg-transparent hover:text-indigo-500" %> <%= link_to ( image_tag rails_blob_path(@podcast.author.social_network.logo), size: "24x24"), @podcast.author.social_network.url, target: '_blank' %>
+    <% end %>
     </p>
   </div>
   <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
@@ -147,7 +151,7 @@
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <% if @podcast.video_file.attached? %>
             <% if @podcast.video_file.video? %>
-              <%= video_tag(rails_blob_path(@podcast.video_file), controls: true, preload: true, height: 250 ) %>
+              <%= video_tag(rails_blob_path(@podcast.video_file), controls: true, preload: true, height: 250, class: "max-w-full" ) %>
               <br />
               <%= link_to rails_blob_path(@podcast.video_file, disposition: "attachment"), class: "inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
                 <!-- Heroicon name: solid/mail -->
@@ -173,8 +177,8 @@
             <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
               <div class="w-0 flex-1 flex items-center">
                 <!-- Heroicon name: solid/paper-clip -->
-                <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
+                <svg class="flex-shrink-0 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
                 </svg>
                 <% if @podcast.audio_file.attached? %>
                   <% if @podcast.audio_file.audio? %>
@@ -193,8 +197,8 @@
             <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
               <div class="w-0 flex-1 flex items-center">
                 <!-- Heroicon name: solid/paper-clip -->
-                <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
+                <svg class="flex-shrink-0 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                 </svg>
                 <% if @podcast.video_file.attached? %>
                   <% if @podcast.video_file.video? %>

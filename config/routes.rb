@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :social_networks
+  resources :authors
   resources :type_podcasts
   resources :meetings
   resources :podcasts

@@ -232,13 +232,7 @@
 
               <div class="col-span-6 sm:col-span-3">
                 <label for="country" class="block text-sm font-medium text-gray-700">Auteur de cette publication</label>
-                <select id="country" name="country" autocomplete="country" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                  <option>Apôtre Valentin FOTUE</option>
-                  <option>Pasteur Antoine TCHAKOUNTE</option>
-                  <option>Pasteur BOUYA</option>
-                  <option>Prophèt Audrey G.</option>
-                  <option>Pasteur Nadège FOTUE</option>
-                </select>
+                <%= form.collection_select(:author_id, Author.all, :id, :name, {prompt: "Auteur de la publication ..."}, {class: "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"}) %> 
               </div>
 
               <div class="hidden sm:block" aria-hidden="true">
@@ -372,7 +366,4 @@
   </div> 
 <%
 =end%>
-  <div class="actions">
-    <%= form.submit "Enregistrer ce podcast", class: "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-  </div> 
 <% end %>
