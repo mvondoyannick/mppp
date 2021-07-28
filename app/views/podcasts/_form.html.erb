@@ -122,10 +122,14 @@
         <div class="px-4 py-5 bg-white sm:p-6">
           <div class="grid grid-cols-6 gap-6">
 
-            <div class="col-span-6">
+            <%
+=begin%>
+ <div class="col-span-6">
               <label for="street-address" class="block text-sm font-medium text-gray-700">Type de publication</label>
               <%= form.select(:type_podcast, options_for_select([["Meditation matinale", "Meditation matinale"], ["Prayer lunch", "Prayer Lunch"], ["Sujet de Prière", "Sujet de prière"], ["Enseignements", "Enseignement"]]), {:include_blank => "Selectionner un type de publication"}, {class: "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"}) %>
-            </div>
+            </div> 
+<%
+=end%>
 
             <div class="col-span-6">
               <label for="street-address" class="block text-sm font-medium text-gray-700">Type de publication (new)</label>
@@ -264,7 +268,7 @@
                   <input id="offers" name="offers" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
                 </div>
                 <div class="ml-3 text-sm">
-                  <label for="offers" class="font-medium text-gray-700">Offers</label>
+                  <label for="offers" class="font-medium text-gray-700">Rendre cet publication publique</label>
                   <p class="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
                 </div>
               </div>
@@ -272,7 +276,7 @@
           </fieldset>
           <fieldset>
             <div>
-              <legend class="text-base font-medium text-gray-900">Push Notifications</legend>
+              <legend class="text-base font-medium text-gray-900">Enregistrer comme brouillon</legend>
               <p class="text-sm text-gray-500">These are delivered via SMS to your mobile phone.</p>
             </div>
             <div class="mt-4 space-y-4">
