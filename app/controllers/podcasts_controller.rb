@@ -18,7 +18,31 @@ class PodcastsController < ApplicationController
   def show
     @page_title = @podcast.title
     @page_description = "Consulter les podcasts"
-    @page_keywords = "Podcasts, enseignements, Parole de Dieu"
+    @page_keywords = "Podcasts, enseignements, Parole de Dieu, méditation, Jesus Christ"
+
+    set_meta_tags og: {
+      title: @podcast.title,
+      type: "article",
+      url: request.url,
+      image: rails_blob_path(@podcast.cover)
+    }
+
+    # adding acticle og
+    set_meta_tags article: {
+      published_time: @podcast.created_at,
+      modified_time: @podcast.updated_at,
+      section: @podcast.type_podcast.name,
+      tag: "MPPP"
+    }
+
+    # adding twitter card
+    set_meta_tags twitter: {
+      title: @podcast.title,
+      creator: "MPPP",
+      card: @podcast.extrait,
+      site: request.url,
+      image: rails_blob_path(@podcast.cover)
+    }
     track "Viewed Podcast", title: @podcast.title
   end
 
