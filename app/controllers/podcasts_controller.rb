@@ -17,7 +17,7 @@ class PodcastsController < ApplicationController
   # GET /podcasts/1.json
   def show
     @page_title = @podcast.title
-    @page_description = "Consulter les podcasts"
+    @page_description = excerpt(@podcast.extrait, "", radius: 50)
     @page_keywords = "Podcasts, enseignements, Parole de Dieu, méditation, Jesus Christ"
 
     set_meta_tags og: {
