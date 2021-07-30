@@ -17,5 +17,8 @@ module Mppp
     # the framework and any gems in your application.
     config.i18n.available_locales = [:en, :fr]
     config.i18n.default_locale = :fr
+
+    # changing rails middleware
+    config.middleware.use Rack::Attack
   end
 end

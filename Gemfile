@@ -68,6 +68,8 @@ gem "simple_calendar", "~> 2.4"
 
 gem "rails-i18n", "~> 6.0"
 
+#https://github.com/huacnlee/social-share-button
+#rails generate social_share_button:install
 gem "social-share-button", "~> 1.2"
 
 gem "ransack", "~> 2.4"
@@ -81,3 +83,5 @@ gem "maxminddb", "~> 0.1.22"
 gem "id3tag", "~> 0.14.1"
 
 gem "meta-tags", "~> 2.14"
+
+gem 'rack-attack'
